@@ -1,0 +1,247 @@
+/* Art appearance: original printmaking motifs, isolated from color data. */
+.sidebar-theme {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+button.art-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 11px;
+}
+.art-switcher > svg {
+  flex-shrink: 0;
+}
+.art-switch-track {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  padding: 2px;
+  margin-left: auto;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #e7e7e9;
+  transition: background-color 200ms ease-in-out;
+}
+.art-switch-track > span {
+  width: 22px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #ffffff;
+  transition: transform 200ms ease-in-out;
+}
+.art-switcher[aria-checked="true"] .art-switch-track {
+  background: var(--art-ink, #242426);
+}
+.art-switcher[aria-checked="true"] .art-switch-track > span {
+  transform: translateX(14px);
+  background: #ffffff;
+}
+.art-colophon {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin-top: 32px;
+  pointer-events: none;
+}
+.art-colophon img {
+  max-width: 100%;
+  height: auto;
+}
+.art-colophon > span {
+  margin-top: 8px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.art-colophon small {
+  font: italic 11px var(--app-font);
+  color: var(--muted);
+}
+:root[data-ui-theme="art"] {
+  --bg: #f6f1e7;
+  --panel: #fcf9f2;
+  --surface: #eee7d8;
+  --selected: #f5f5f6;
+  --text: #302f2b;
+  --muted: #686357;
+  --line: #d8cfbd;
+  --control-line: #978b77;
+  --secondary: #eae4d6;
+  --secondary-hover: #dfd6c3;
+  --secondary-active: #d4c7ae;
+  --primary-hover: #3c5474;
+  --primary-active: #20324c;
+  --danger: #9c4135;
+  --danger-hover: #f4e3dc;
+  --danger-active: #ead1c6;
+  --art-ink: #293e5d;
+  --art-rust: #824b39;
+  --art-brass: #a99473;
+}
+html[data-ui-theme="art"] body {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .toolbar {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .toolbar .wordmark {
+  color: var(--art-ink);
+}
+html[data-ui-theme="art"] .workspace-heading h1 {
+  font: 400 20px/24px var(--app-font);
+  letter-spacing: -0.02em;
+}
+
+html[data-ui-theme="art"] .sidebar {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .sidebar-label {
+  color: var(--art-rust);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+html[data-ui-theme="art"] .sidebar > button[aria-current="page"] {
+  background: var(--selected);
+  color: var(--art-ink);
+}
+html[data-ui-theme="art"] .workspace-column {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .workspace-meta {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .sidebar-theme {
+  border-top: 0;
+  padding-top: 24px;
+  background: url("/art/tessera.svg") left top/64px 8px repeat-x;
+}
+html[data-ui-theme="art"] button.primary {
+  background: var(--art-ink);
+  border-color: var(--art-ink);
+  color: #fcf9f2;
+}
+html[data-ui-theme="art"] button.primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+html[data-ui-theme="art"] button.primary:active:not(:disabled) {
+  background: var(--primary-active);
+}
+html[data-ui-theme="art"] :is(.builder-dialog, .command-dialog, .select-menu) {
+  background: var(--panel);
+  box-shadow: 0 16px 48px #302f2b24;
+}
+html[data-ui-theme="art"] .builder-dialog h2 {
+  font: 400 22px/28px var(--app-font);
+}
+html[data-ui-theme="art"] :is(.palette-empty, .source-empty) h2 {
+  font: 400 24px/32px var(--app-font);
+  color: var(--art-ink);
+}
+html[data-ui-theme="art"] .empty-illustration {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+html[data-ui-theme="art"] .empty-illustration::before {
+  content: "";
+  width: 144px;
+  height: 168px;
+  flex-shrink: 0;
+  background: url("/art/atelier.svg") center/contain no-repeat;
+  opacity: 0.65;
+  pointer-events: none;
+}
+html[data-ui-theme="art"] .palette-block {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: var(--card-surface);
+}
+html[data-ui-theme="art"] .palette-block header h2 {
+  font: 400 18px/24px var(--app-font);
+  color: var(--art-ink);
+}
+html[data-ui-theme="art"] .source-caption {
+  background: var(--panel);
+}
+html[data-ui-theme="art"] .semantic-group {
+  background: var(--card-surface);
+}
+html[data-ui-theme="art"] .semantic-group-heading h2 {
+  color: var(--art-rust);
+}
+html[data-ui-theme="art"] .inspector {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] .inspector > .section-tabs {
+  background: var(--bg);
+}
+html[data-ui-theme="art"] th {
+  background: var(--panel);
+}
+html[data-ui-theme="art"] .theme-switcher {
+  background: var(--selected);
+}
+html[data-ui-theme="art"] .floating-analysis {
+  box-shadow: 0 8px 32px #302f2b18;
+}
+html[data-ui-theme="art"] .profile-link {
+  color: var(--art-ink);
+}
+@media (max-height: 760px) {
+  .art-colophon {
+    margin-top: 16px;
+  }
+  .art-colophon img {
+    width: 100px;
+  }
+}
+@media (max-height: 640px) {
+  .art-colophon {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-switch-track,
+  .art-switch-track > span {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  html[data-ui-theme="art"] body {
+    background: Canvas;
+  }
+  .art-colophon,
+  html[data-ui-theme="art"] .empty-illustration::before {
+    display: none;
+  }
+  .art-switch-track {
+    border: 1px solid ButtonText;
+  }
+  html[data-ui-theme="art"] .sidebar-theme {
+    background: none;
+    border-top: 1px solid CanvasText;
+  }
+}
+
+/* Tabs sit directly on the paper; keep menu and focus treatments shared. */
+html[data-ui-theme="art"] .section-tabs {
+  background: transparent;
+}
+html[data-ui-theme="art"] .theme-switcher-thumb {
+  background: var(--panel);
+  border-color: var(--line);
+}

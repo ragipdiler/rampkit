@@ -1,0 +1,55 @@
+/* Rampkit UI foundation. Keep in sync with docs/design/UI-UX.md. */
+:root {
+  --app-font: system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --text-max-width: 560px;
+  --radius-full: 9999px;
+  --radius-small: 8px;
+  --radius-content: 12px;
+  --radius-preview: 16px;
+  --radius-panel: 24px;
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --surface: #f5f5f5;
+  --selected: #f5f5f6;
+  --card-surface: #fafafb;
+  --text: #242426;
+  --muted: #626268;
+  --line: #e7e7e9;
+  --control-line: #8e8e96;
+  --accent: #3e3e44;
+  --focus: #0180fa;
+  --focus-halo: #e4efff;
+  --focus-halo-soft: #e4efff66;
+  --focus-duration: 2000ms;
+  --danger: #a12a37;
+  --primary-hover: #353538;
+  --primary-active: #171719;
+  --secondary: #eeeeef;
+  --secondary-hover: #e2e2e5;
+  --secondary-active: #d6d6da;
+  --danger-hover: #fbe4e7;
+  --danger-active: #f5d0d6;
+  --control-height: 26px;
+  --toolbar-height: 56px;
+  --sidebar-width: 176px;
+  --inspector-width: 288px;
+  --motion-fast: 150ms;
+  --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23626268' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+html[data-platform-font="google"] {
+  --app-font: "Google Sans Flex Variable", system-ui, sans-serif;
+}

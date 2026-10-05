@@ -1,0 +1,54 @@
+# Dependencies and generated builds
+node_modules/
+.next/
+dist/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+apps/web/next-env.d.ts
+
+# Secrets and machine-specific configuration
+.env
+.env.*
+*.pem
+*.key
+
+# Browser tests and generated design snapshots
+test-results/
+playwright-report/
+playwright/.cache/
+tests/screenshots/
+docs/design/screenshots/
+
+# Local exports, caches, logs and temporary files
+/rampkit/
+.cache/
+.turbo/
+.npm/
+.pnpm-store/
+.vercel/
+.netlify/
+.codex/
+.agents/
+.aws/
+.eslintcache
+.prettiercache
+*.log
+logs/
+.tmp/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# OS and optional editor settings
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

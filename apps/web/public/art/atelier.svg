@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 336" fill="none">
+<defs>
+ <pattern id="stippling" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#293e5d" opacity=".28"/></pattern>
+ <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5 5 0" stroke="#824b39" stroke-width=".6" opacity=".4"/></pattern>
+ <clipPath id="arch"><path d="M40 272V134a104 104 0 0 1 208 0v138Z"/></clipPath>
+</defs>
+<path d="M24 284V134a120 120 0 0 1 240 0v150" stroke="#a99473"/>
+<path d="M32 284V134a112 112 0 0 1 224 0v150" stroke="#a99473"/>
+<g clip-path="url(#arch)">
+ <path fill="#e5dfc9" d="M40 28h208v244H40z"/>
+ <circle cx="175" cy="116" r="32" fill="#bc8251"/>
+ <path d="M175 72v-8m0 104v-8m44-44h8m-104 0h8m75-31 6-6m-74 74 6-6m62 6 6 6m-74-74 6 6" stroke="#a9784b"/>
+ <path d="M36 190q40-46 90-10t126-18v120H36Z" fill="#86948b"/>
+ <path d="M32 227q68-75 134-18t96-5v85H32Z" fill="#293e5d"/>
+ <path d="M40 28h208v244H40z" fill="url(#stippling)"/>
+ <path d="M63 261q-16-76 1-120 23 51 9 120Z" fill="#384a3e"/>
+ <path d="M67 164v119" stroke="#d7d4bb" stroke-width=".8"/>
+ <path d="M87 268h124v-92q-62-76-124 0Z" fill="#d4b795"/>
+ <path d="M87 268h124v-92q-62-76-124 0Z" fill="url(#hatch)"/>
+ <path d="M108 270v-90q41-49 82 0v90" fill="#f1e8d5" stroke="#824b39"/>
+ <path d="M108 268h82l-24-39h-35Z" fill="#bc8251"/>
+ <path d="m108 268 35-82m47 82-35-82m-37 55h60m-53-15h46m-39-13h33" stroke="#824b39" stroke-width=".8"/>
+ <path d="M92 180v86m110-86v86m-118-88h19m92 0h19m-132 89h23m88 0h23" stroke="#824b39" stroke-width="2"/>
+</g>
+<path d="M40 272V134a104 104 0 0 1 208 0v138Z" stroke="#293e5d" stroke-width="1.5"/>
+<path d="M20 284h248m-240 7h232" stroke="#a99473"/>
+<g transform="translate(144 310)" stroke="#a99473" stroke-width=".8">
+ <circle r="12"/><path d="m0-12 4 8 8 4-8 4-4 8-4-8-8-4 8-4Z"/>
+ <path d="m-9-9 9 3 9-3-3 9 3 9-9-3-9 3 3-9Z"/>
+</g>
+<path d="M30 310h82m64 0h82" stroke="#a99473" stroke-dasharray="2 3"/>
+</svg>

@@ -1,0 +1,395 @@
+/* Rampkit · extracted anchors are preserved; generated stops are labeled. */
+html:not([data-ui-theme="art"]) {
+  --purple-25: oklch(
+    0.99 0.004812500000000001 283.42611498975094
+  ); /* generated */
+  --purple-50: oklch(
+    0.9779371783607765 0.010660455949311 283.42611498975094
+  ); /* generated */
+  --purple-100: oklch(
+    0.9578324756287374 0.02057558997665032 283.42611498975094
+  ); /* generated */
+  --purple-200: oklch(
+    0.9176230701646594 0.040855413517049785 283.42611498975094
+  ); /* generated */
+  --purple-300: oklch(
+    0.8532880214221343 0.07393857988658725 283.42611498975094
+  ); /* generated */
+  --purple-400: oklch(
+    0.772869210493978 0.11261564711261397 283.42611498975094
+  ); /* generated */
+  --purple-500: oklch(
+    0.6924503995658219 0.15151337975316043 283.42611498975094
+  ); /* extracted */
+  --purple-600: oklch(
+    0.5727801017858598 0.1277871287418497 283.42611498975094
+  ); /* generated */
+  --purple-700: oklch(
+    0.4531098040058976 0.10406087773053896 283.42611498975094
+  ); /* generated */
+  --purple-800: oklch(
+    0.33343950622593554 0.08033462671922824 283.42611498975094
+  ); /* generated */
+  --purple-900: oklch(
+    0.22573623822396965 0.058981000809048584 283.42611498975094
+  ); /* generated */
+  --purple-950: oklch(0.13 0.04 283.42611498975094); /* generated */
+  --neutral-25: oklch(
+    0.99 0.0020868278236585913 280.5514806555098
+  ); /* generated */
+  --neutral-50: oklch(
+    0.9762183768936655 0.003824923879340363 280.5514806555098
+  ); /* generated */
+  --neutral-100: oklch(
+    0.9532490050497747 0.006127685395444645 280.5514806555098
+  ); /* generated */
+  --neutral-200: oklch(
+    0.9073102613619933 0.009663404953337796 280.5514806555098
+  ); /* generated */
+  --neutral-300: oklch(
+    0.8338082714615428 0.011141987134082505 280.5514806555098
+  ); /* generated */
+  --neutral-400: oklch(
+    0.7419307840859799 0.01299021486001339 280.5514806555098
+  ); /* generated */
+  --neutral-500: oklch(
+    0.6500532967104169 0.014838442585944274 280.5514806555098
+  ); /* generated */
+  --neutral-600: oklch(
+    0.5581758093348539 0.01668667031187516 280.5514806555098
+  ); /* generated */
+  --neutral-700: oklch(
+    0.46629832195929066 0.018534898037806048 280.5514806555098
+  ); /* generated */
+  --neutral-800: oklch(
+    0.3744208345837279 0.02038312576373693 280.5514806555098
+  ); /* generated */
+  --neutral-900: oklch(
+    0.2917310959457211 0.02000808765528238 280.5514806555098
+  ); /* generated */
+  --neutral-950: oklch(
+    0.2182291060452707 0.023525112897819434 280.5514806555098
+  ); /* extracted */
+  --orange-25: oklch(
+    0.99 0.0072812499999999995 71.1880926185779
+  ); /* generated */
+  --orange-50: oklch(
+    0.9820725006690558 0.013149001755708874 71.1880926185779
+  ); /* generated */
+  --orange-100: oklch(
+    0.9688600017841488 0.023033786808048802 71.1880926185779
+  ); /* generated */
+  --orange-200: oklch(
+    0.9424350040143349 0.04325043226340074 71.1880926185779
+  ); /* generated */
+  --orange-300: oklch(
+    0.9001550075826326 0.07503246849751619 71.1880926185779
+  ); /* generated */
+  --orange-400: oklch(
+    0.8473050120430047 0.09946025415825409 71.1880926185779
+  ); /* generated */
+  --orange-500: oklch(
+    0.7944550165033768 0.1708903676936353 71.1880926185779
+  ); /* extracted */
+  --orange-600: oklch(
+    0.6530816087367008 0.14045711009163397 71.1880926185779
+  ); /* generated */
+  --orange-700: oklch(
+    0.5117082009700249 0.11004580616896745 71.1880926185779
+  ); /* generated */
+  --orange-800: oklch(
+    0.37033479320334906 0.0796240169987148 71.1880926185779
+  ); /* generated */
+  --orange-900: oklch(
+    0.24309872621334072 0.052274396780698056 71.1880926185779
+  ); /* generated */
+  --orange-950: oklch(
+    0.13 0.027929687499999994 71.1880926185779
+  ); /* generated */
+  --green-25: oklch(0.99 0.008 164.52744635286487); /* generated */
+  --green-50: oklch(
+    0.9794306869277392 0.013931064601366255 164.52744635286487
+  ); /* generated */
+  --green-100: oklch(
+    0.9618151651406379 0.023816172270310014 164.52744635286487
+  ); /* generated */
+  --green-200: oklch(
+    0.9265841215664354 0.04358638760819748 164.52744635286487
+  ); /* generated */
+  --green-300: oklch(
+    0.8702144518477113 0.0752187321488175 164.52744635286487
+  ); /* generated */
+  --green-400: oklch(
+    0.7997523646993061 0.1064493760265783 164.52744635286487
+  ); /* generated */
+  --green-500: oklch(
+    0.729290277550901 0.15429959350036748 164.52744635286487
+  ); /* extracted */
+  --green-600: oklch(
+    0.60178170785922 0.1273149146939856 164.52744635286487
+  ); /* generated */
+  --green-700: oklch(
+    0.47427313816753885 0.10032164341089952 164.52744635286487
+  ); /* generated */
+  --green-800: oklch(
+    0.3467645684758578 0.07335909383641578 164.52744635286487
+  ); /* generated */
+  --green-900: oklch(
+    0.2320068557533448 0.04906219356845254 164.52744635286487
+  ); /* generated */
+  --green-950: oklch(0.13 0.0275 164.52744635286487); /* generated */
+  --blue-25: oklch(0.99 0.004687500000000001 257.7648603505872); /* generated */
+  --blue-50: oklch(
+    0.9773096078876482 0.010728421287220666 257.7648603505872
+  ); /* generated */
+  --blue-100: oklch(
+    0.9561589543670619 0.020928845592461567 257.7648603505872
+  ); /* generated */
+  --blue-200: oklch(
+    0.9138576473258894 0.041807794046202176 257.7648603505872
+  ); /* generated */
+  --blue-300: oklch(
+    0.846175556060013 0.0766686258831571 257.7648603505872
+  ); /* generated */
+  --blue-400: oklch(
+    0.7615729419776679 0.12283073413261983 257.7648603505872
+  ); /* generated */
+  --blue-500: oklch(
+    0.6769703278953227 0.17198082287130356 257.7648603505872
+  ); /* extracted */
+  --blue-600: oklch(
+    0.5605936623856796 0.14389979672847303 257.7648603505872
+  ); /* generated */
+  --blue-700: oklch(
+    0.44421699687603644 0.11581877058564247 257.7648603505872
+  ); /* generated */
+  --blue-800: oklch(
+    0.32784033136639334 0.08773774444281193 257.7648603505872
+  ); /* generated */
+  --blue-900: oklch(
+    0.22310133240771446 0.06246482091426443 257.7648603505872
+  ); /* generated */
+  --blue-950: oklch(0.13 0.04 257.7648603505872); /* generated */
+  --red-25: oklch(0.99 0.004781250000000001 22.16235028646568); /* generated */
+  --red-50: oklch(
+    0.9728409351318033 0.013196937013674059 22.16235028646568
+  ); /* generated */
+  --red-100: oklch(
+    0.9442424936848086 0.027815890097287486 22.16235028646568
+  ); /* generated */
+  --red-200: oklch(
+    0.8870456107908194 0.05932031406377905 22.16235028646568
+  ); /* generated */
+  --red-300: oklch(
+    0.7955305981604367 0.10925670804848614 22.16235028646568
+  ); /* generated */
+  --red-400: oklch(
+    0.6811368323724583 0.1688194774887721 22.16235028646568
+  ); /* generated */
+  --red-500: oklch(
+    0.5667430665844799 0.22838224692905804 22.16235028646568
+  ); /* extracted */
+  --red-600: oklch(
+    0.47381900986437786 0.1883009177952159 22.16235028646568
+  ); /* generated */
+  --red-700: oklch(
+    0.3808949531442757 0.14821958866137375 22.16235028646568
+  ); /* generated */
+  --red-800: oklch(
+    0.28797089642417356 0.10813825952753163 22.16235028646568
+  ); /* generated */
+  --red-900: oklch(
+    0.20433924537608167 0.07206506330707368 22.16235028646568
+  ); /* generated */
+  --red-950: oklch(0.13 0.04 22.16235028646568); /* generated */
+  --cyan-25: oklch(0.99 0.008 208.3552607638875); /* generated */
+  --cyan-50: oklch(
+    0.9796828430787855 0.01203252607783231 208.3552607638875
+  ); /* generated */
+  --cyan-100: oklch(
+    0.962487581543428 0.018753402874219494 208.3552607638875
+  ); /* generated */
+  --cyan-200: oklch(
+    0.928097058472713 0.032195156466993835 208.3552607638875
+  ); /* generated */
+  --cyan-300: oklch(
+    0.8730722215595689 0.05370196221543282 208.3552607638875
+  ); /* generated */
+  --cyan-400: oklch(
+    0.8042911754181389 0.07311632265017591 208.3552607638875
+  ); /* generated */
+  --cyan-500: oklch(
+    0.7355101292767089 0.10746897658653022 208.3552607638875
+  ); /* extracted */
+  --cyan-600: oklch(
+    0.6066781868774092 0.09311387518514082 208.3552607638875
+  ); /* generated */
+  --cyan-700: oklch(
+    0.4778462444781093 0.0787587737837514 208.3552607638875
+  ); /* generated */
+  --cyan-800: oklch(
+    0.34901430207880957 0.06003252469625442 208.3552607638875
+  ); /* generated */
+  --cyan-900: oklch(
+    0.23306555391943973 0.04009624481844379 208.3552607638875
+  ); /* generated */
+  --cyan-950: oklch(0.13 0.02234375 208.3552607638875); /* generated */
+  --base-25: oklch(1.0000000000000002 0 0); /* manual */
+  --base-50: oklch(0.9844642857142859 0 0); /* generated */
+  --base-100: oklch(0.9585714285714287 0 0); /* generated */
+  --base-200: oklch(0.9067857142857145 0 0); /* generated */
+  --base-300: oklch(0.8239285714285716 0 0); /* generated */
+  --base-400: oklch(0.7203571428571429 0 0); /* generated */
+  --base-500: oklch(0.6167857142857145 0 0); /* generated */
+  --base-600: oklch(0.5132142857142858 0 0); /* generated */
+  --base-700: oklch(0.4096428571428571 0 0); /* generated */
+  --base-800: oklch(0.30607142857142866 0 0); /* generated */
+  --base-900: oklch(0.21285714285714286 0 0); /* generated */
+  --base-950: oklch(0.13 0 0); /* generated */
+
+  --background-primary: var(--base-25);
+  --background-secondary: var(--neutral-25);
+  --background-tertiary: var(--neutral-50);
+  --surface-primary: var(--base-25);
+  --surface-secondary: var(--neutral-25);
+  --text-primary: var(--neutral-950);
+  --text-secondary: var(--neutral-700);
+  --text-tertiary: var(--neutral-600);
+  --text-inverse: var(--base-25);
+  --border-primary: var(--neutral-100);
+  --border-secondary: var(--neutral-200);
+  --border-focus: var(--purple-500);
+  --action-primary: var(--purple-500);
+  --action-primary-hover: var(--purple-600);
+  --action-primary-active: var(--purple-600);
+  --action-primary-foreground: var(--base-25);
+  --success: var(--green-600);
+  --success-foreground: var(--green-50);
+  --warning: var(--orange-600);
+  --warning-foreground: var(--orange-50);
+  --danger: var(--red-600);
+  --danger-foreground: var(--red-50);
+  --info: var(--blue-600);
+  --info-foreground: var(--blue-50);
+}
+
+html.dark:not([data-ui-theme="art"]) {
+  --background-primary: var(--neutral-950);
+  --background-secondary: var(--neutral-900);
+  --background-tertiary: var(--neutral-800);
+  --surface-primary: var(--neutral-900);
+  --surface-secondary: var(--neutral-800);
+  --text-primary: var(--neutral-25);
+  --text-secondary: var(--neutral-200);
+  --text-tertiary: var(--neutral-400);
+  --text-inverse: var(--neutral-950);
+  --border-primary: var(--neutral-600);
+  --border-secondary: var(--neutral-700);
+  --border-focus: var(--purple-400);
+  --action-primary: var(--purple-400);
+  --action-primary-hover: var(--purple-300);
+  --action-primary-active: var(--purple-200);
+  --action-primary-foreground: var(--neutral-950);
+  --success: var(--green-400);
+  --success-foreground: var(--neutral-950);
+  --warning: var(--orange-400);
+  --warning-foreground: var(--neutral-950);
+  --danger: var(--red-400);
+  --danger-foreground: var(--neutral-950);
+  --info: var(--blue-400);
+  --info-foreground: var(--neutral-950);
+}
+
+/* Classic UI aliases. Art keeps its own original tokens and artwork. */
+html:not([data-ui-theme="art"]) {
+  --bg: var(--background-primary);
+  --canvas: var(--background-primary);
+  --panel: var(--surface-primary);
+  --surface: var(--background-tertiary);
+  --selected: var(--background-tertiary);
+  --card-surface: var(--surface-secondary);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --line: var(--border-primary);
+  --control-line: var(--border-secondary);
+  --accent: var(--action-primary);
+  --focus: var(--border-focus);
+  --focus-halo: var(--purple-100);
+  --focus-halo-soft: color-mix(in oklch, var(--purple-100) 40%, transparent);
+  --primary-hover: var(--action-primary-hover);
+  --primary-active: var(--action-primary-active);
+  --secondary: var(--background-tertiary);
+  --secondary-hover: var(--neutral-100);
+  --secondary-active: var(--neutral-200);
+  --danger-hover: var(--red-50);
+  --danger-active: var(--red-100);
+}
+html:not([data-ui-theme="art"]) button.primary {
+  background: var(--action-primary);
+  color: var(--action-primary-foreground);
+}
+html:not([data-ui-theme="art"]) button.primary:hover:not(:disabled) {
+  background: var(--action-primary-hover);
+}
+html:not([data-ui-theme="art"]) button.primary:active:not(:disabled) {
+  background: var(--action-primary-active);
+}
+:root:not([data-ui-theme="art"])
+  body
+  :is(
+    .section-tabs > button,
+    .top-navigation > button,
+    .paint-tools button,
+    .paint-brushes button,
+    .canvas-controls button
+  ) {
+  color: var(--text-tertiary);
+}
+:root:not([data-ui-theme="art"])
+  body
+  :is(
+    .section-tabs > button[aria-selected="true"],
+    .top-navigation > button[aria-current="page"],
+    .section-tabs > button:hover,
+    .top-navigation > button:hover,
+    .paint-tools button[aria-pressed="true"],
+    .paint-brushes button[aria-pressed="true"],
+    .canvas-controls button[aria-pressed="true"]
+  ) {
+  color: var(--text-primary);
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher {
+  background: var(--neutral-50);
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher-thumb {
+  background: var(--base-25);
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher > button {
+  color: var(--neutral-500);
+  font-weight: 400;
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher > button[aria-checked="true"] {
+  color: var(--purple-500);
+  font-weight: 500;
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher > button[aria-checked="true"] > svg {
+  color: var(--purple-500);
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher > button:hover:not(:disabled) {
+  color: var(--neutral-500);
+  background: transparent;
+}
+:root:not([data-ui-theme="art"]) body .theme-switcher > button[aria-checked="true"]:hover:not(:disabled) {
+  color: var(--purple-500);
+}
+html:not([data-ui-theme="art"]) .art-switch-track {
+  background: var(--neutral-100);
+}
+html:not([data-ui-theme="art"]) .art-switch-track > span {
+  background: var(--base-25);
+}
+
+html:not([data-ui-theme="art"]) input[type="checkbox"]:checked {
+  background-color: var(--action-primary);
+  border-color: var(--action-primary);
+}

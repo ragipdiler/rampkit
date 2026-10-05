@@ -1,0 +1,85 @@
+{
+  "name": "rampkit",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "description": "Turn website colors into production-ready color systems.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "bin": {
+    "rampkit": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "node scripts/web.mjs dev",
+    "build": "npm run build:cli && node scripts/web.mjs build",
+    "build:cli": "node scripts/build-cli.mjs",
+    "start": "node scripts/web.mjs start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm run lint && npm test",
+    "cli": "tsx packages/cli/src/index.ts",
+    "prepack": "npm run build:cli",
+    "pretest:e2e": "npm run build:cli"
+  },
+  "dependencies": {
+    "@fontsource-variable/google-sans-flex": "^5.3.1",
+    "@radix-ui/react-select": "^2.3.7",
+    "culori": "^4.0.2",
+    "lucide-react": "^0.468.0",
+    "next": "^16.0.0",
+    "playwright": "^1.58.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "spectral.js": "^3.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/culori": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.0.0",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.11"
+  },
+  "keywords": [
+    "oklch",
+    "design-tokens",
+    "color-palette",
+    "design-system",
+    "accessibility",
+    "wcag",
+    "frontend",
+    "tailwind",
+    "design-engineering",
+    "developer-tools",
+    "open-source"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ragipdiler/rampkit.git"
+  },
+  "homepage": "https://github.com/ragipdiler/rampkit#readme",
+  "bugs": {
+    "url": "https://github.com/ragipdiler/rampkit/issues"
+  }
+}
