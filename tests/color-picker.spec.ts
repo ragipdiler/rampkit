@@ -1,9 +1,10 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("Canvas picker shares accurate modes, alpha, saved colors and canvas sampling", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("navigation", { name: "Workspace" })
     .getByRole("button", { name: "Canvas", exact: true })

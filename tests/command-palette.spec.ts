@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("command palette search, keyboard selection, empty results and action execution", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   await page.keyboard.press("Control+k");
   const menu = page.getByRole("dialog", { name: "Command menu", exact: true });
   const search = menu.getByRole("combobox", { name: "Search commands" });

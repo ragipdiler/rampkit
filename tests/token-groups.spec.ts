@@ -1,9 +1,10 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("compact token groups preserve mappings across filters and themes", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();

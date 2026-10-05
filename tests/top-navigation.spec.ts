@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("top navigation shares the brand row and preserves page and keyboard actions", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   const header = page.locator(".toolbar");
   const nav = header.getByRole("navigation", { name: "Workspace" });
   await expect(nav.getByRole("button")).toHaveCount(6);

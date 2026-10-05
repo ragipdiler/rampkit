@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("dropdown keyboard navigation, dialog Escape, styled open state and long lists", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();

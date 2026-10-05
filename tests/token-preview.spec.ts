@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 import { chooseOption } from "./select-option";
 
 test("dashboard previews use real tokens without saving temporary mappings", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   const nav = page.getByRole("navigation", { name: "Workspace" });
   await nav.getByRole("button", { name: "Tokens", exact: true }).click();
   await expect(

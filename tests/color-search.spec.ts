@@ -1,9 +1,10 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("color selectors filter names, preserve mappings and support keyboard selection", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();

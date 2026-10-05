@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 import { chooseOption } from "./select-option";
 
 test("section tabs expose evidence, ignored colors and generation without accordions", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page.getByRole("button", { name: "Add color", exact: true }).click();
   const add = page.getByRole("dialog", { name: "Add color", exact: true });
   await add.getByLabel("Color", { exact: true }).fill("#262626");

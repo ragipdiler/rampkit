@@ -1,3 +1,4 @@
+import { openWorkspace } from "./open-workspace";
 import { chooseOption } from "./select-option";
 import { test, expect } from "@playwright/test";
 
@@ -5,7 +6,7 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
   page,
 }) => {
   await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   await expect(
     page.getByRole("button", { name: "Create Palette", exact: true }),
   ).toHaveCount(1);

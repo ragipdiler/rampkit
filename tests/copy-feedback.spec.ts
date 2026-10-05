@@ -1,3 +1,4 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("copy actions use stable icon feedback without shifting layout", async ({
@@ -5,7 +6,7 @@ test("copy actions use stable icon feedback without shifting layout", async ({
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();
@@ -99,7 +100,7 @@ test("failed clipboard writes never show a success check or add layout feedback"
       },
     }),
   );
-  await page.goto("/");
+  await openWorkspace(page);
   await page.getByRole("button", { name: "Add color", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Add color", exact: true });
   await dialog.getByLabel("Color", { exact: true }).fill("#666880");

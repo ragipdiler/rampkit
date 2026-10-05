@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("all empty illustrations are decorative and static with reduced motion", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   for (const [name, variant] of [
     ["Source", "source"],
     ["Palettes", "palettes"],
@@ -49,7 +50,7 @@ test("empty palette colors cycle smoothly without generating user data", async (
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/");
+  await openWorkspace(page);
   const colors = await page
     .locator(".empty-ramp .empty-tone")
     .evaluateAll((elements) =>

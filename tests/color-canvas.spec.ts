@@ -1,10 +1,11 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 import { chooseOption } from "./select-option";
 
 test("infinite canvas studies preserve colors, pan, zoom, undo and save/import", async ({
   page,
 }, testInfo) => {
-  await page.goto("/");
+  await openWorkspace(page);
   const nav = page.getByRole("navigation", { name: "Workspace" });
   await nav.getByRole("button", { name: "Canvas", exact: true }).click();
   await page.getByRole("tab", { name: "Color studies", exact: true }).click();

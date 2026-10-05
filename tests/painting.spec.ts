@@ -1,3 +1,4 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("painting blends pigments, collects exact colors and creates preserved palette anchors", async ({
@@ -5,7 +6,7 @@ test("painting blends pigments, collects exact colors and creates preserved pale
 }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await openWorkspace(page);
   const nav = page.getByRole("navigation", { name: "Workspace" });
   await nav.getByRole("button", { name: "Canvas", exact: true }).click();
   const paper = page.getByLabel("Infinite painting paper", { exact: true });

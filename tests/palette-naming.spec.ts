@@ -1,9 +1,10 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("palette names follow color input until edited, avoid duplicates and prefill from sources", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();

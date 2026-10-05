@@ -1,9 +1,10 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 
 test("floating paint tray pages colors without scrolling and preserves painting", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page
     .getByRole("navigation", { name: "Workspace" })
     .getByRole("button", { name: "Canvas", exact: true })
@@ -78,7 +79,7 @@ for (const [platform, userAgent, family] of [
   }) => {
     const context = await browser.newContext({ userAgent });
     const page = await context.newPage();
-    await page.goto("http://127.0.0.1:3000/");
+    await openWorkspace(page, "http://127.0.0.1:3000/");
     await page.evaluate(() => document.fonts.ready);
     expect(
       await page

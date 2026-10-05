@@ -1,3 +1,4 @@
+import { openWorkspace } from "./open-workspace";
 import { chooseOption } from "./select-option";
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
@@ -37,7 +38,7 @@ async function createSelected(page: Page, name: string, step = "500") {
   ).toBeVisible();
 }
 async function completeBuilderFlow(page: Page, sourceUrl: string) {
-  await page.goto("/");
+  await openWorkspace(page);
   await expect(
     page.getByRole("heading", { name: "Palettes", exact: true }),
   ).toBeVisible();
@@ -236,7 +237,7 @@ test("discovery, explicit palettes, exact multiple anchors, mappings, contrast a
 test("standalone manual workflow: edit, lock, unlock, regenerate, rename and delete", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await addManual(page, "oklch(.6 .2 285)");
   await createSelected(page, "Custom");
   await page.getByRole("button", { name: "Inspect custom-800" }).click();

@@ -1,3 +1,4 @@
+import { openWorkspace } from "./open-workspace";
 import { test, expect } from "@playwright/test";
 import { chooseOption } from "./select-option";
 
@@ -5,7 +6,7 @@ test("Art appearance preserves anchors, exports and independent token theme", as
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   const toggle = page.getByRole("switch", { name: "Art theme" });
   await expect(toggle).toHaveAttribute("aria-checked", "false");
   await page
@@ -74,7 +75,7 @@ test("Art dialogs, portal selects, keyboard focus and compact desktop layout wor
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await openWorkspace(page);
   await page.getByRole("switch", { name: "Art theme" }).click();
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
@@ -124,7 +125,7 @@ test("Art dialogs, portal selects, keyboard focus and compact desktop layout wor
 test("Art engraving and editorial typography stay decorative and restore Classic", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openWorkspace(page);
   await page.getByRole("switch", { name: "Art theme" }).click();
   await expect(page.locator(".art-colophon")).toHaveCount(0);
   await expect(page.locator(".workspace-heading h1")).toHaveCSS(
