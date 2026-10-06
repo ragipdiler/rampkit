@@ -188,11 +188,11 @@ h1 span {
 }
 .main-button {
   background: var(--purple-500);
-  color: var(--neutral-950);
+  color: #ffffff;
 }
 .main-button:hover {
   background: var(--purple-400);
-  color: var(--neutral-950);
+  color: #ffffff;
 }
 .outline-button {
   background: transparent;
