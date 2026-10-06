@@ -20,6 +20,7 @@ import {
   TokenArt,
   PaintArt,
 } from "../components/illustrations";
+import { WorkflowArt } from "../components/workflow-art";
 import { HeadingColor } from "../components/heading-color";
 import { StickyHeader } from "../components/sticky-header";
 import { GitHubStars } from "../components/github-stars";
@@ -247,61 +248,67 @@ export default function Page() {
             <span className="eyebrow">HOW IT WORKS</span>
             <h2>From a starting color to your app.</h2>
             <p>
-              Each decision stays explicit. Rampkit helps generate and check a
-              system; you decide which colors and mappings to keep.
+              Four steps from a starting color to a system you can use. You
+              choose the colors and keep control of every mapping.
             </p>
           </div>
           <ol className="workflow-steps">
             <li>
-              <span className="step-badge">1</span>
+              <div className="workflow-art-stage">
+                <WorkflowArt step={1} />
+                <span className="step-badge">01</span>
+              </div>
               <h3>Choose your colors</h3>
               <p>
-                Analyze a trusted website, enter a color, or sample a canvas
-                study.
+                Extract from a website, enter a color, or sample your canvas.
               </p>
             </li>
             <li>
-              <span className="step-badge">2</span>
+              <div className="workflow-art-stage">
+                <WorkflowArt step={2} />
+                <span className="step-badge">02</span>
+              </div>
               <h3>Create your palettes</h3>
-              <p>
-                Place and lock anchors, then generate and review the remaining
-                stops.
-              </p>
+              <p>Lock your starting colors. Generate and refine the scale.</p>
             </li>
             <li>
-              <span className="step-badge">3</span>
+              <div className="workflow-art-stage">
+                <WorkflowArt step={3} />
+                <span className="step-badge">03</span>
+              </div>
               <h3>Map and check</h3>
               <p>
-                Create tokens, assign Light/Dark roles, and review previews and
+                Assign light and dark roles. Preview components and check
                 contrast.
               </p>
             </li>
             <li>
-              <span className="step-badge">4</span>
+              <div className="workflow-art-stage">
+                <WorkflowArt step={4} />
+                <span className="step-badge">04</span>
+              </div>
               <h3>Export and apply</h3>
               <p>
-                Copy your CSS, download your tokens, or prepare a
-                coding-assistant handoff.
+                Copy CSS, download tokens, or hand off to your coding assistant.
               </p>
             </li>
           </ol>
         </section>
 
         <section className="installation wrap section" id="installation">
-          <div className="installation-copy">
+          <div className="installation-heading">
             <span className="eyebrow">
               <Terminal size={14} />
               INSTALLATION
             </span>
-            <h2>
-              Run Rampkit
-              <br />
-              on your machine.
-            </h2>
+            <h2>Run Rampkit on your machine.</h2>
             <p>
               Copy the commands into your terminal. Install once, then open the
               local app whenever you need it.
             </p>
+          </div>
+          <InstallCommand />
+          <div className="installation-meta">
             <div className="requirements">
               <span>YOU WILL NEED</span>
               <p>
@@ -330,7 +337,6 @@ export default function Page() {
               Read the setup guide <ArrowUpRight size={15} />
             </a>
           </div>
-          <InstallCommand />
         </section>
 
         <section className="faq wrap section" aria-labelledby="faq-title">
@@ -395,11 +401,7 @@ export default function Page() {
         <section className="closing wrap">
           <div>
             <span className="eyebrow">OPEN SOURCE. LOCAL FIRST.</span>
-            <h2>
-              Use it. Learn from it.
-              <br />
-              Make it your own.
-            </h2>
+            <h2>Use it. Learn from it. Make it your own.</h2>
             <p>
               Built for designers and developers who want more control over
               their colors.

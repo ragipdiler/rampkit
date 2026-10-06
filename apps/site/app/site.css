@@ -72,7 +72,7 @@ h3 {
   padding-inline: 28px;
 }
 .section {
-  margin-top: 108px;
+  margin-top: 88px;
 }
 .sr-only {
   position: absolute;
@@ -475,7 +475,7 @@ h3 {
   margin-top: 80px;
   padding: 40px 48px;
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
   gap: 30px;
   background: var(--purple-25);
@@ -536,7 +536,7 @@ h3 {
   margin-top: 12px;
 }
 .workflow {
-  margin-top: 110px;
+  margin-top: 96px;
 }
 .workflow .section-heading {
   max-width: 660px;
@@ -721,7 +721,7 @@ h3 {
 }
 .faq {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 70px;
 }
 .faq-list {
@@ -1307,4 +1307,226 @@ h3 {
   overflow: visible;
   border-radius: 999px;
   background: var(--neutral-50);
+}
+
+/* Balanced section rhythm: centered overviews, mirrored story, then setup. */
+.features > .section-heading,
+.workflow > .section-heading {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+.features > .section-heading p,
+.workflow > .section-heading p {
+  margin-inline: auto;
+  max-width: 500px;
+}
+.paint-illustration {
+  grid-column: 1;
+  grid-row: 1;
+}
+.paint-copy {
+  grid-column: 2;
+  grid-row: 1;
+}
+.details {
+  text-align: center;
+}
+.details p {
+  max-width: 290px;
+  margin-inline: auto;
+}
+.workflow-steps {
+  gap: 16px;
+  margin: 0;
+}
+.workflow-steps > li {
+  position: relative;
+  min-width: 0;
+  padding: 12px 22px 26px;
+  border-radius: 24px;
+  background: var(--neutral-25);
+  text-align: center;
+}
+.workflow-art-stage {
+  position: relative;
+  margin-bottom: 16px;
+}
+.workflow-art {
+  display: block;
+  width: 100%;
+  height: 145px;
+}
+.workflow-art-stage .step-badge {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  background: white;
+  font-size: 9px;
+}
+.workflow-steps h3 {
+  font-size: 16px;
+}
+.workflow-steps p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+.installation {
+  display: block;
+}
+.installation-heading {
+  max-width: 660px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.installation-heading h2 {
+  font-size: 34px;
+  margin: 14px 0;
+}
+.installation-heading > p {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 450px;
+  margin-inline: auto;
+}
+.installation .install-stack {
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  padding-top: 0;
+}
+.installation .install-box {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 26px;
+  border-radius: 24px;
+}
+.installation .install-box-bottom {
+  margin-top: auto;
+  padding-top: 20px;
+}
+.installation-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+  max-width: 850px;
+  margin: 26px auto 0;
+  align-items: center;
+}
+.installation-meta .requirements {
+  margin-top: 0;
+}
+.installation-meta .small-note {
+  margin: 0;
+}
+.installation-meta .text-link {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 0;
+}
+.faq {
+  display: block;
+}
+.faq > .section-heading {
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.faq-list {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.closing {
+  flex-direction: column;
+  text-align: center;
+  gap: 22px;
+  padding-block: 44px;
+}
+.closing h2 br {
+  display: none;
+}
+.closing > div {
+  max-width: 670px;
+}
+@media (max-width: 800px) {
+  .paint-copy,
+  .paint-illustration {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .paint-copy {
+    text-align: center;
+  }
+  .paint-copy p {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .workflow-steps > li {
+    padding-inline: 18px;
+  }
+  .installation .install-stack {
+    grid-template-columns: 1fr;
+  }
+  .installation-meta {
+    max-width: 550px;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 14px;
+  }
+  .installation-meta .small-note {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+  .details {
+    text-align: left;
+  }
+  .details p {
+    max-width: none;
+  }
+}
+@media (max-width: 520px) {
+  .workflow-steps {
+    gap: 12px;
+  }
+  .workflow-steps > li {
+    padding: 8px 12px 20px;
+  }
+  .workflow-art {
+    height: 112px;
+  }
+  .workflow-steps h3 {
+    font-size: 14px;
+  }
+  .workflow-steps p {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+  .installation-heading h2 {
+    font-size: 28px;
+  }
+  .installation .install-box {
+    padding: 20px;
+  }
+  .installation-meta .text-link {
+    grid-column: auto;
+  }
+}
+@media (max-width: 360px) {
+  .workflow-steps {
+    grid-template-columns: 1fr;
+  }
+  .workflow-steps > li {
+    padding: 14px 22px 24px;
+  }
+  .workflow-art {
+    height: 140px;
+  }
+  .workflow-steps h3 {
+    font-size: 16px;
+  }
+  .workflow-steps p {
+    font-size: 12px;
+  }
 }
