@@ -211,11 +211,35 @@ test("heading color choices fit mobile screens and unrelated text selection does
   });
   const popup = page.getByRole("dialog", { name: "Heading color" });
   await expect(popup).toBeVisible();
+  await expect(popup.locator(".heading-color-details")).toBeHidden();
   const bounds = await popup.boundingBox();
   expect(bounds!.x).toBeGreaterThanOrEqual(0);
   expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(320);
   await page
     .getByRole("heading", { name: "A palette is only the beginning." })
     .click();
+  await expect(popup).toBeHidden();
+});
+
+test("desktop heading palette previews accurate Lagoon technical values before applying", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const trigger = page.getByRole("button", {
+    name: "Choose heading text color",
+  });
+  await trigger.focus();
+  await trigger.press("Enter");
+  const popup = page.getByRole("dialog", { name: "Heading color" });
+  await popup.getByRole("button", { name: "Lagoon", exact: true }).hover();
+  const details = popup.locator(".heading-color-details");
+  await expect(details).toBeVisible();
+  await expect(details.getByText("#279f93", { exact: true })).toBeVisible();
+  await expect(details).toContainText("rgb(39, 159, 147)");
+  await expect(details).toContainText("oklch(");
+  await expect(
+    popup.getByRole("button", { name: "Purple", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await popup.getByRole("button", { name: "Lagoon", exact: true }).click();
   await expect(popup).toBeHidden();
 });

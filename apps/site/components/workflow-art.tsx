@@ -165,7 +165,7 @@ export function WorkflowArt({ step }: { step: 1 | 2 | 3 | 4 }) {
               fill="var(--purple-100)"
             />
           </g>
-          <circle cx="153" cy="102" r="22" fill="var(--purple-500)" />
+          <circle cx="153" cy="102" r="22" fill="var(--lagoon)" />
           <path
             d="M153 91v21m-8-8 8 8 8-8"
             stroke="white"

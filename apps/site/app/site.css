@@ -1530,3 +1530,115 @@ h3 {
     font-size: 12px;
   }
 }
+
+:root {
+  --lagoon: #279f93;
+  --lagoon-soft: color-mix(in oklch, var(--lagoon) 6%, white);
+  --lagoon-ink: color-mix(in oklch, var(--lagoon) 76%, var(--neutral-950));
+}
+.status-dot,
+.dot-two {
+  background: var(--lagoon);
+}
+.paint-section {
+  background: var(--lagoon-soft);
+}
+.paint-copy > .eyebrow,
+.paint-illustration .art-label {
+  color: var(--lagoon-ink);
+}
+.details article:last-child .detail-icon {
+  background: var(--lagoon-soft);
+  color: var(--lagoon-ink);
+}
+.workflow-art-stage .step-badge {
+  color: var(--lagoon-ink);
+}
+.installation-meta .text-link {
+  color: var(--lagoon-ink);
+}
+.closing .main-button {
+  background: var(--lagoon-ink);
+  color: #ffffff;
+}
+.closing .main-button:hover {
+  background: color-mix(in oklch, var(--lagoon) 64%, var(--neutral-950));
+  color: #ffffff;
+}
+.heading-color-popup {
+  display: block;
+  width: 200px;
+}
+.heading-color-options {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.heading-color-details {
+  display: none;
+}
+@media (min-width: 801px) {
+  .heading-color-popup {
+    width: 392px;
+    border-radius: 22px;
+    padding: 16px;
+    background: #ffffff;
+  }
+  .heading-color-options {
+    justify-content: space-between;
+    padding: 0 2px 14px;
+  }
+  .heading-color-details {
+    display: block;
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--neutral-25);
+    font-size: 12px;
+  }
+  .heading-color-detail-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .heading-color-detail-title > span {
+    width: 14px;
+    height: 14px;
+    border-radius: 5px;
+  }
+  .heading-color-detail-title small {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--neutral-500);
+    margin-left: auto;
+  }
+  .heading-color-details dl {
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .heading-color-details dl > div {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    align-items: baseline;
+  }
+  .heading-color-details dt {
+    color: var(--neutral-500);
+    font-size: 11px;
+  }
+  .heading-color-details dd {
+    margin: 0;
+    min-height: 18px;
+  }
+  .heading-color-details code {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--neutral-950);
+  }
+  .heading-color-details p {
+    font-size: 10px;
+    margin-top: 12px;
+    color: var(--neutral-600);
+  }
+}
