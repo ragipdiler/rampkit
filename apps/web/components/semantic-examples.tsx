@@ -84,6 +84,17 @@ export function SemanticExamples({
             className="semantic-example"
             key={example.title}
             aria-label={example.title}
+            data-token-group={
+              index === 0
+                ? "background"
+                : index === 1
+                  ? "surface"
+                  : index === 2
+                    ? "text"
+                    : index === 3
+                      ? "border"
+                      : kind
+            }
             style={style}
             data-mapped={missing.length === 0}
           >

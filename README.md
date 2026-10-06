@@ -114,7 +114,7 @@ Contrast checks report WCAG text and UI ratios; transparent colors require the a
 
 Primitives come from your palettes. Semantic roles reference primitives separately in Light and Dark, and start unresolved. Apply suggestions explicitly or choose mappings yourself. **Token theme** changes the edited/exported mapping theme, independently of Classic/Art appearance.
 
-Preview shows saved semantic mappings or a temporary palette study, plus examples for all semantic roles: backgrounds, surfaces, typography, borders/focus, primary and secondary button states, and success/warning/danger/info notifications. Unmapped roles show labeled neutral placeholders; they are never treated as saved colors. **Integrate** copies exact colors and saved mappings into instructions for your coding assistant; copying does not modify another application.
+Preview places grouped token mappings beside a live dashboard and component pane (preview first on small screens). It shows saved semantic mappings or a temporary palette study, plus examples for all semantic roles: backgrounds, surfaces, typography, borders/focus, primary and secondary button states, and success/warning/danger/info notifications. Unmapped roles show labeled neutral placeholders; they are never treated as saved colors. **Integrate** copies exact colors and saved mappings into instructions for your coding assistant; copying does not modify another application.
 
 ## Export formats
 

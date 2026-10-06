@@ -137,6 +137,7 @@ function SearchableSelect({
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
+  const anchorPosition = useRef({ top: 0, left: 0 });
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
     null,
   );
@@ -186,6 +187,7 @@ function SearchableSelect({
   function show() {
     setPortalContainer(trigger.current?.closest("dialog") ?? document.body);
     const rect = trigger.current!.getBoundingClientRect();
+    anchorPosition.current = { top: rect.top, left: rect.left };
     const width = Math.min(Math.max(rect.width, 220), window.innerWidth - 16);
     const below = window.innerHeight - rect.bottom - 16;
     const above = rect.top - 16;
@@ -213,7 +215,17 @@ function SearchableSelect({
         setOpen(false);
     }
     function viewportChange(event: Event) {
-      if (!menu.current?.contains(event.target as Node)) setOpen(false);
+      if (event.target instanceof Node && menu.current?.contains(event.target))
+        return;
+      const rect = trigger.current?.getBoundingClientRect();
+      // A different scroll pane must not dismiss this anchored menu.
+      if (
+        event.type === "resize" ||
+        !rect ||
+        Math.abs(rect.top - anchorPosition.current.top) > 1 ||
+        Math.abs(rect.left - anchorPosition.current.left) > 1
+      )
+        setOpen(false);
     }
     document.addEventListener("pointerdown", outside);
     window.addEventListener("resize", viewportChange);
@@ -225,8 +237,15 @@ function SearchableSelect({
     };
   }, [open]);
   useEffect(() => {
-    if (open && activeId)
-      document.getElementById(activeId)?.scrollIntoView({ block: "nearest" });
+    if (!open || !activeId) return;
+    const option = document.getElementById(activeId);
+    const list = option?.closest<HTMLElement>(".searchable-options");
+    if (!option || !list) return;
+    const item = option.getBoundingClientRect();
+    const viewport = list.getBoundingClientRect();
+    if (item.top < viewport.top) list.scrollTop += item.top - viewport.top;
+    else if (item.bottom > viewport.bottom)
+      list.scrollTop += item.bottom - viewport.bottom;
   }, [open, activeId]);
   const popup = open ? (
     <div

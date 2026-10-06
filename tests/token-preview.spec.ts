@@ -114,6 +114,17 @@ test("dashboard previews use real tokens without saving temporary mappings", asy
     .getByRole("tab", { name: "Semantic mappings", exact: true })
     .click();
   await expect(dashboard).toBeVisible();
+  const editor = page.getByRole("region", {
+    name: "Preview semantic mappings",
+    exact: true,
+  });
+  await expect(editor.locator(".preview-token-group")).toHaveCount(10);
+  const initialPosition = await dashboard.boundingBox();
+  await editor.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  await expect(dashboard).toBeInViewport();
+  expect((await dashboard.boundingBox())!.y).toBe(initialPosition!.y);
   const border = page.getByLabel("Preview map border-primary", { exact: true });
   const card = dashboard.locator(".preview-card").first();
   const originalBorder = await card.evaluate(
@@ -184,6 +195,28 @@ test("every semantic role has a specimen, status and secondary states use exact 
   });
   await expect(examples.locator(".sample-references > div")).toHaveCount(28);
   await expect(examples).toContainText("Unresolved");
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const warningPicker = page.getByRole("combobox", { name: "Preview map warning", exact: true });
+  await warningPicker.click();
+  await page
+    .getByRole("region", { name: "Live token preview", exact: true })
+    .evaluate(
+      (element) =>
+        new Promise<void>((resolve) => {
+          element.addEventListener(
+            "scroll",
+            () => requestAnimationFrame(() => resolve()),
+            { once: true },
+          );
+          element.scrollTop += 100;
+        }),
+    );
+  await expect(warningPicker).toHaveAttribute("aria-expanded", "true");
+  await page.evaluate(() => window.dispatchEvent(new Event("resize")));
+  await expect(warningPicker).toHaveAttribute("aria-expanded", "false");
+  expect(errors).toEqual([]);
+
   for (const [role, value] of Object.entries({
     warning: "blue-600",
     "warning-foreground": "blue-25",
@@ -207,6 +240,7 @@ test("every semantic role has a specimen, status and secondary states use exact 
     page.getByLabel("Preview map warning", { exact: true }),
     "blue-500",
   );
+  await expect(warning).toBeInViewport();
   expect(
     await warning.evaluate(
       (element) => getComputedStyle(element).backgroundColor,
@@ -223,6 +257,13 @@ test("every semantic role has a specimen, status and secondary states use exact 
   await page.getByRole("radio", { name: "Light", exact: true }).click();
   await expect(warning).toBeVisible();
   await page.setViewportSize({ width: 390, height: 844 });
+  const mobileEditor = await page
+    .getByRole("region", { name: "Preview semantic mappings", exact: true })
+    .boundingBox();
+  const mobilePreview = await page
+    .getByRole("region", { name: "Live token preview", exact: true })
+    .boundingBox();
+  expect(mobilePreview!.y).toBeLessThan(mobileEditor!.y);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
