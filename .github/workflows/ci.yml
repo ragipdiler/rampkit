@@ -18,6 +18,8 @@ jobs:
       - run: npm run check
       - run: npm run test:e2e
       - run: npm run build
+      - run: npm run test:site
+      - run: npm run build:site
       - name: Upload browser failure diagnostics
         if: failure()
         uses: actions/upload-artifact@v4

@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+node_modules
+**/node_modules
+.next
+**/.next
+out
+**/out
+dist
+coverage
+test-results
+playwright-report
+.DS_Store
+**/.DS_Store

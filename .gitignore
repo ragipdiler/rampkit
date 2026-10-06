@@ -2,10 +2,11 @@
 node_modules/
 .next/
 dist/
+out/
 coverage/
 .nyc_output/
 *.tsbuildinfo
-apps/web/next-env.d.ts
+apps/*/next-env.d.ts
 
 # Secrets and machine-specific configuration
 .env
@@ -52,3 +53,5 @@ Thumbs.db
 Desktop.ini
 .idea/
 .vscode/
+.vercel
+.env*

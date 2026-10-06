@@ -5,14 +5,15 @@ const config = [
     ignores: [
       "**/.next/**",
       "dist/**",
+      "**/out/**",
       "node_modules/**",
-      "apps/web/next-env.d.ts",
+      "apps/*/next-env.d.ts",
       "test-results/**",
       "playwright-report/**",
     ],
   },
   ...nextVitals,
   ...nextTs,
-  { settings: { next: { rootDir: "apps/web/" } } },
+  { settings: { next: { rootDir: ["apps/web/", "apps/site/"] } } },
 ];
 export default config;

@@ -1,6 +1,10 @@
 # Rampkit
 
+[![GitHub stars](https://img.shields.io/github/stars/ragipdiler/rampkit?style=flat&label=GitHub%20stars)](https://github.com/ragipdiler/rampkit)
+
 Turn website colors into production-ready color systems.
+
+[Website](https://rampkit-studio.vercel.app) · [Installation](#installation)
 
 Rampkit is an open-source, local-first color system builder for designers and developers. It extracts useful colors from websites or accepts custom colors, builds perceptually consistent OKLCH palettes, validates contrast, generates light and dark design tokens, and exports production-ready color systems.
 
@@ -144,6 +148,7 @@ packages/core/      Color parsing, palettes, contrast, pigment calculations
 packages/extractor/ Chromium website discovery
 packages/tokens/    Semantic mappings, exports, integration prompts
 packages/cli/       Command-line workflows
+apps/site/          Static English landing page
 scripts/            Cross-platform web launcher and test fixture
 tests/              Browser integration tests
 docs/               Design notes and screenshots
@@ -168,3 +173,13 @@ Suggested GitHub topics: `oklch`, `design-tokens`, `color-palette`, `design-syst
 ## License
 
 [MIT](LICENSE). Dependencies retain their own licenses. Google Sans Flex uses the SIL Open Font License; the GitHub Invertocat is a third-party brand asset. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+### Landing page
+
+The English project website lives in `apps/site`. It uses the shared color primitives and exports a static site; it does not host the local studio or website extraction API.
+
+```bash
+npm run dev:site    # http://127.0.0.1:3002
+npm run build:site  # apps/site/out
+npm run test:site   # installation, keyboard, and responsive checks
+```

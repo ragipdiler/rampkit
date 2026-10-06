@@ -32,7 +32,10 @@
     "check": "npm run typecheck && npm run lint && npm test",
     "cli": "tsx packages/cli/src/index.ts",
     "prepack": "npm run build:cli",
-    "pretest:e2e": "npm run build:cli"
+    "pretest:e2e": "npm run build:cli",
+    "dev:site": "node scripts/site.mjs dev",
+    "build:site": "node scripts/site.mjs build",
+    "test:site": "playwright test --config playwright.site.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/google-sans-flex": "^5.3.1",
