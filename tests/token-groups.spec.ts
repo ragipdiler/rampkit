@@ -20,7 +20,7 @@ test("compact token groups preserve mappings across filters and themes", async (
     .getByRole("button", { name: "Create tokens", exact: true })
     .click();
   await page.getByRole("button", { name: "Tokens", exact: true }).click();
-  await expect(page.locator(".semantic-row")).toHaveCount(24);
+  await expect(page.locator(".semantic-row")).toHaveCount(28);
   const first = await page
     .getByRole("region", { name: "Background tokens" })
     .boundingBox();
@@ -47,11 +47,11 @@ test("compact token groups preserve mappings across filters and themes", async (
   await expect(mapping).toHaveAttribute("data-value", "blue-950");
   await page.getByRole("tab", { name: "Primitives 12", exact: true }).click();
   await expect(page.locator(".primitive-item")).toHaveCount(12);
-  await page.getByRole("tab", { name: "Semantic 24", exact: true }).click();
+  await page.getByRole("tab", { name: "Semantic 28", exact: true }).click();
   await expect(mapping).toHaveAttribute("data-value", "blue-950");
-  await filters.getByRole("tab", { name: "All 24", exact: true }).click();
+  await filters.getByRole("tab", { name: "All 28", exact: true }).click();
   await page.setViewportSize({ width: 1024, height: 800 });
-  await expect(page.locator(".semantic-row")).toHaveCount(24);
+  await expect(page.locator(".semantic-row")).toHaveCount(28);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

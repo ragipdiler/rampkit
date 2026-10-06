@@ -40,7 +40,7 @@ export interface ColorToken {
   locked?: boolean;
   name: string;
   family: string;
-  step: Step;
+  step: number;
   color: NormalizedColor;
   source: ColorSource;
   confidence: number;
@@ -107,7 +107,7 @@ export interface Anchor {
   sourceColorId?: string;
 }
 export interface PaletteStop {
-  step: Step;
+  step: number;
   color: NormalizedColor;
   source: "anchor" | "generated";
   locked: boolean;
@@ -120,6 +120,7 @@ export interface GenerationSettings {
   hue: "preserve" | "blend";
 }
 export interface Palette {
+  kind?: "scale" | "custom";
   id: string;
   name: string;
   anchors: Anchor[];

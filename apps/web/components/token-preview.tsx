@@ -2,6 +2,8 @@
 
 import { useId, useState, type CSSProperties } from "react";
 import { ArrowUpRight, Check, MoreHorizontal, Plus } from "lucide-react";
+import { SemanticExamples } from "./semantic-examples";
+import { SEMANTIC_NAMES } from "../../../packages/tokens/src/semantic";
 import { SectionTabs } from "./section-tabs";
 import { Select, SelectOption } from "./select";
 import { contrastRatio } from "../../../packages/core/src/contrast";
@@ -154,40 +156,57 @@ export function TokenPreview({
               </button>
             </div>
             <div className="preview-mapping-grid">
-              {assignments.map(({ role, token }) => (
-                <label className="preview-mapping" key={role}>
-                  <span>{role}</span>
-                  <Select
-                    searchable
-                    aria-label={`Preview map ${role}`}
-                    value={token?.name ?? ""}
-                    onValueChange={(value) => onMap(role, value)}
-                  >
-                    <SelectOption value="">Unresolved</SelectOption>
-                    {system.primitives.map((primitive) => (
-                      <SelectOption value={primitive.name} key={primitive.name}>
-                        {primitive.name}
-                      </SelectOption>
-                    ))}
-                  </Select>
-                  <span className="preview-mapping-value">
-                    {token ? (
-                      <>
-                        <span
-                          className="swatch"
-                          style={{ background: token.color.css }}
-                        />
-                        {token.color.hex} ·{" "}
-                        {token.source === "generated" ? "Generated" : "Anchor"}
-                      </>
-                    ) : (
-                      "Unresolved"
-                    )}
-                  </span>
-                </label>
-              ))}
+              {SEMANTIC_NAMES.map((role) => {
+                const reference = system.semantics.find(
+                  (semantic) =>
+                    semantic.theme === theme && semantic.name === role,
+                )?.primitiveToken;
+                const token = system.primitives.find(
+                  (primitive) => primitive.name === reference,
+                );
+                return (
+                  <label className="preview-mapping" key={role}>
+                    <span>{role}</span>
+                    <Select
+                      searchable
+                      aria-label={`Preview map ${role}`}
+                      value={token?.name ?? ""}
+                      onValueChange={(value) => onMap(role, value)}
+                    >
+                      <SelectOption value="">Unresolved</SelectOption>
+                      {system.primitives.map((primitive) => (
+                        <SelectOption
+                          value={primitive.name}
+                          key={primitive.name}
+                        >
+                          {primitive.name}
+                        </SelectOption>
+                      ))}
+                    </Select>
+                    <span className="preview-mapping-value">
+                      {token ? (
+                        <>
+                          <span
+                            className="swatch"
+                            style={{ background: token.color.css }}
+                          />
+                          {token.color.hex} ·{" "}
+                          {token.source === "generated"
+                            ? "Generated"
+                            : "Anchor"}
+                        </>
+                      ) : (
+                        "Unresolved"
+                      )}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
           </section>
+        )}
+        {mode === "semantic" && (
+          <SemanticExamples system={system} theme={theme} />
         )}
         {unresolved.length ? (
           <div className="preview-unresolved">

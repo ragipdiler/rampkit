@@ -79,7 +79,7 @@ for (const [platform, userAgent, family] of [
   }) => {
     const context = await browser.newContext({ userAgent });
     const page = await context.newPage();
-    await openWorkspace(page, "http://127.0.0.1:3000/");
+    await openWorkspace(page);
     await page.evaluate(() => document.fonts.ready);
     expect(
       await page

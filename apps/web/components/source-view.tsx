@@ -86,7 +86,9 @@ export function SourceView({
                   disabled={!selected.length}
                   onClick={onCreate}
                 >
-                  Create palette from selection
+                  {selected.length > 1
+                    ? "Create palettes from selection"
+                    : "Create palette from selection"}
                 </button>
               </div>
             )}

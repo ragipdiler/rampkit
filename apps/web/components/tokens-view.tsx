@@ -12,15 +12,23 @@ const GROUPS = [
   { key: "surface", label: "Surface" },
   { key: "text", label: "Text" },
   { key: "border", label: "Border" },
-  { key: "action", label: "Action" },
+  { key: "action-primary", label: "Primary button" },
+  { key: "action-secondary", label: "Secondary button" },
   { key: "success", label: "Success" },
   { key: "warning", label: "Warning" },
   { key: "danger", label: "Danger" },
   { key: "info", label: "Info" },
 ];
-const groupOf = (name: string) => name.split("-")[0];
+const groupOf = (name: string) =>
+  name.startsWith("action-")
+    ? name.split("-").slice(0, 2).join("-")
+    : name.split("-")[0];
 const categoryOf = (key: string) =>
-  ["success", "warning", "danger", "info"].includes(key) ? "status" : key;
+  key.startsWith("action-")
+    ? "action"
+    : ["success", "warning", "danger", "info"].includes(key)
+      ? "status"
+      : key;
 
 export function TokensView({
   system,

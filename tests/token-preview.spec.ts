@@ -159,3 +159,73 @@ test("dashboard previews use real tokens without saving temporary mappings", asy
   await chooseOption(page.getByLabel("Export format"), "json");
   await expect(page.getByLabel("Export preview")).toContainText("blue-950");
 });
+
+test("every semantic role has a specimen, status and secondary states use exact mapped colors", async ({
+  page,
+}) => {
+  await openWorkspace(page);
+  await page
+    .getByRole("button", { name: "Create Palette", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog", {
+    name: "Create Palette",
+    exact: true,
+  });
+  await dialog.getByLabel("Anchor", { exact: true }).fill("#2679f3");
+  await dialog
+    .getByRole("button", { name: "Create Palette", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Create tokens", exact: true })
+    .click();
+  await page.getByRole("tab", { name: "Preview", exact: true }).click();
+  const examples = page.getByRole("region", {
+    name: "All semantic token examples",
+  });
+  await expect(examples.locator(".sample-references > div")).toHaveCount(28);
+  await expect(examples).toContainText("Unresolved");
+  for (const [role, value] of Object.entries({
+    warning: "blue-600",
+    "warning-foreground": "blue-25",
+    "action-secondary": "blue-100",
+    "action-secondary-hover": "blue-200",
+    "action-secondary-active": "blue-300",
+    "action-secondary-foreground": "blue-950",
+  }))
+    await chooseOption(
+      page.getByLabel(`Preview map ${role}`, { exact: true }),
+      value,
+    );
+  const warning = examples.locator(
+    'article[aria-label="Warning notification"] .sample-notification',
+  );
+  await expect(warning).toContainText("Some changes need your review.");
+  const original = await warning.evaluate(
+    (element) => getComputedStyle(element).backgroundColor,
+  );
+  await chooseOption(
+    page.getByLabel("Preview map warning", { exact: true }),
+    "blue-500",
+  );
+  expect(
+    await warning.evaluate(
+      (element) => getComputedStyle(element).backgroundColor,
+    ),
+  ).not.toBe(original);
+  await expect(
+    examples.locator('article[aria-label="Secondary button"] .sample-button'),
+  ).toHaveCount(3);
+  await page.getByRole("radio", { name: "Dark", exact: true }).click();
+  await expect(warning.locator("xpath=..")).toHaveAttribute(
+    "data-mapped",
+    "false",
+  );
+  await page.getByRole("radio", { name: "Light", exact: true }).click();
+  await expect(warning).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});

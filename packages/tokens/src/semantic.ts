@@ -23,6 +23,10 @@ export const SEMANTIC_NAMES = [
   "action-primary-hover",
   "action-primary-active",
   "action-primary-foreground",
+  "action-secondary",
+  "action-secondary-hover",
+  "action-secondary-active",
+  "action-secondary-foreground",
   "success",
   "success-foreground",
   "warning",
@@ -76,6 +80,10 @@ export function generateSemantics(primitives: ColorToken[]): SemanticToken[] {
     map.set("action-primary", pick(brand, dark ? 400 : 600));
     map.set("action-primary-hover", pick(brand, dark ? 300 : 700));
     map.set("action-primary-active", pick(brand, dark ? 200 : 800));
+    map.set("action-secondary", neutral(dark ? 800 : 100));
+    map.set("action-secondary-hover", neutral(dark ? 700 : 200));
+    map.set("action-secondary-active", neutral(dark ? 600 : 300));
+    map.set("action-secondary-foreground", neutral(dark ? 25 : 950));
     const foreground = (background: ColorToken | undefined) => {
       if (!background) return undefined;
       return primitives
@@ -182,6 +190,12 @@ export function validateSemantics(
       "action-primary-active",
     ])
       pairs.push(["action-primary-foreground", bg, "text"]);
+    for (const bg of [
+      "action-secondary",
+      "action-secondary-hover",
+      "action-secondary-active",
+    ])
+      pairs.push(["action-secondary-foreground", bg, "text"]);
     for (const bg of ["success", "warning", "danger", "info"])
       pairs.push([`${bg}-foreground`, bg, "text"]);
     for (const [foreground, background, criterion] of pairs) {

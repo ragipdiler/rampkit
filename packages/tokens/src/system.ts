@@ -26,7 +26,19 @@ export function buildTokenSystem(
 ): TokenSystem {
   const primitives = palettesToPrimitives(palettes);
   const names = new Set(primitives.map((t) => t.name));
-  const semantics = mappings.map((t) =>
+  // Newly introduced roles remain unresolved for existing mapping sets.
+  const completeMappings = mappings.length
+    ? [
+        ...mappings,
+        ...blankSemantics().filter(
+          (role) =>
+            !mappings.some(
+              (saved) => saved.theme === role.theme && saved.name === role.name,
+            ),
+        ),
+      ]
+    : mappings;
+  const semantics = completeMappings.map((t) =>
     t.primitiveToken && !names.has(t.primitiveToken)
       ? {
           ...t,

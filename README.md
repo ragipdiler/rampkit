@@ -98,6 +98,10 @@ Canvas supports brush painting, subtractive pigment mixing, sampling, and collec
 
 Ramps use steps `25`, `50`, `100` through `900`, and `950`. Locked anchors preserve their normalized values. Unlocked stops are generated in OKLCH using configurable lightness, chroma, and hue behavior. Conflicting anchor order is reported rather than silently changed.
 
+The website input starts with `https://` and accepts domain-only entries; explicit `http://` URLs are preserved for local fixtures.
+
+Selecting multiple Source colors creates one separate scale per anchor. **Add custom palette** keeps an exact ordered collection of 1–256 colors, including two-color palettes, without generating extra stops. Custom tokens use sequential names such as `duo-1` and `duo-2`.
+
 ## OKLCH
 
 OKLCH separates perceived lightness, chroma, and hue. Rampkit uses Culori for conversion and gamut handling. Original wide-gamut colors remain available; HEX/RGB fallbacks and contrast calculations use sRGB. Generated scales still need visual review.
@@ -110,7 +114,7 @@ Contrast checks report WCAG text and UI ratios; transparent colors require the a
 
 Primitives come from your palettes. Semantic roles reference primitives separately in Light and Dark, and start unresolved. Apply suggestions explicitly or choose mappings yourself. **Token theme** changes the edited/exported mapping theme, independently of Classic/Art appearance.
 
-Preview shows saved semantic mappings or a temporary palette study. **Integrate** copies exact colors and saved mappings into instructions for your coding assistant; copying does not modify another application.
+Preview shows saved semantic mappings or a temporary palette study, plus examples for all semantic roles: backgrounds, surfaces, typography, borders/focus, primary and secondary button states, and success/warning/danger/info notifications. Unmapped roles show labeled neutral placeholders; they are never treated as saved colors. **Integrate** copies exact colors and saved mappings into instructions for your coding assistant; copying does not modify another application.
 
 ## Export formats
 

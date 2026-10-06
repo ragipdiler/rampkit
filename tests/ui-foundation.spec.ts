@@ -12,13 +12,27 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
   ).toHaveCount(1);
   await expect(page.getByLabel("Application appearance")).toHaveCount(0);
   await expect(page.getByLabel("Token preview")).toHaveCount(0);
-  for (const selector of ["body", ".toolbar"]) {
+  for (const selector of ["body"]) {
     expect(
       await page
         .locator(selector)
         .evaluate((el) => getComputedStyle(el).backgroundColor),
     ).toBe("lab(100 0 0)");
   }
+  const header = await page.locator(".toolbar").evaluate((element) => {
+    const probe = document.createElement("span");
+    probe.style.background = "var(--neutral-50)";
+    element.append(probe);
+    const expected = getComputedStyle(probe).backgroundColor;
+    probe.remove();
+    return {
+      color: getComputedStyle(element).backgroundColor,
+      expected,
+      border: getComputedStyle(element).borderBottomWidth,
+    };
+  });
+  expect(header.color).toBe(header.expected);
+  expect(header.border).toBe("0px");
   await page
     .getByRole("navigation", { name: "Workspace" })
     .getByRole("button", { name: "Source", exact: true })
@@ -41,7 +55,9 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
   await expect(
     page.getByRole("button", { name: "Analyze", exact: true }),
   ).toBeFocused();
-  await expect(page.getByRole("button", { name: "Analyze", exact: true })).toBeFocused();
+  await expect(
+    page.getByRole("button", { name: "Analyze", exact: true }),
+  ).toBeFocused();
   await page
     .getByRole("button", { name: "Create Palette", exact: true })
     .click();
@@ -110,7 +126,9 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
   ).toContainText("#262626");
   await page.setViewportSize({ width: 1024, height: 768 });
   const shellGeometry = await page.evaluate(() => {
-    const navigation = document.querySelector(".top-navigation")!.getBoundingClientRect();
+    const navigation = document
+      .querySelector(".top-navigation")!
+      .getBoundingClientRect();
     const logo = document.querySelector(".wordmark")!.getBoundingClientRect();
     const form = document
       .querySelector(".floating-analysis")!
@@ -119,7 +137,9 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
       .querySelector(".workspace-column")!
       .getBoundingClientRect();
     return {
-      headerAlignment: Math.abs(navigation.y + navigation.height / 2 - logo.y - logo.height / 2),
+      headerAlignment: Math.abs(
+        navigation.y + navigation.height / 2 - logo.y - logo.height / 2,
+      ),
       bottomGap: innerHeight - form.bottom,
       centered: Math.abs(form.x + form.width / 2 - column.x - column.width / 2),
     };

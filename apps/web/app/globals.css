@@ -2639,3 +2639,43 @@ html[data-ui-theme="art"] .canvas-empty h2 {
   transform: translate(-50%, -50%);
   opacity: 0;
 }
+
+/* Explicit palette collections and full semantic specimens. */
+.collection-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+.collection-dialog[data-mode="custom"] { width: min(360px, calc(100vw - 32px)); }
+.collection-rows { display: grid; gap: 12px; padding: 2px; }
+.collection-row { display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: end; gap: 8px; }
+.collection-dialog[data-mode="batch"] .collection-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 96px; }
+.collection-row .field { min-width: 0; margin-bottom: 0; }
+.collection-row .select-trigger { min-width: 0; width: 100%; }
+.collection-row .icon-button { align-self: center; margin-top: 20px; }
+@media (max-width: 480px) {
+  .collection-dialog[data-mode="batch"] .collection-row { grid-template-columns: minmax(0, 1fr) 96px; }
+  .collection-dialog[data-mode="batch"] .collection-row .field:first-child { grid-column: 1 / -1; }
+}
+.semantic-examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; margin: 16px 0; }
+.semantic-example { border-radius: 16px; padding: 16px; background: var(--card-surface); display: grid; align-content: start; gap: 12px; }
+.sample-layers, .sample-type, .sample-borders { display: grid; gap: 8px; }
+.sample-layers > div, .sample-type p, .sample-borders > div { padding: 10px; border-radius: 8px; }
+.sample-layers span { padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+.sample-button-states { display: flex; flex-wrap: wrap; gap: 6px; }
+button.sample-button, button.sample-button:hover, button.sample-button:active { background: inherit; border: 0; }
+.sample-notification { display: flex; gap: 10px; align-items: start; border-radius: 12px; padding: 12px; }
+.sample-notification svg { flex-shrink: 0; margin-top: 2px; }
+.sample-references { display: grid; gap: 6px; }
+.sample-references > div { display: flex; gap: 8px; align-items: center; font-size: 11px; }
+.sample-references small { display: block; color: var(--muted); }
+:root:not([data-ui-theme="art"]) .toolbar { background: var(--neutral-50); border-bottom: 0; }
+
+.custom-palette .palette-ramp { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+
+.semantic-example[data-mapped="false"] :is(.sample-notification, .sample-type p, .sample-layers > div, .sample-borders > div, .sample-button) {
+  background: var(--surface);
+  color: var(--muted);
+}
+.sample-unmapped { font-size: 11px; overflow-wrap: anywhere; }

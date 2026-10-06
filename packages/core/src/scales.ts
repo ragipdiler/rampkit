@@ -34,7 +34,7 @@ export function generatePrimitives(families: ColorFamily[]): ColorToken[] {
     );
     const hue = midpoint.color.oklch.h;
     const nodes = ordered.map((t) => ({
-      index: STEPS.indexOf(t.step),
+      index: STEPS.indexOf(t.step as (typeof STEPS)[number]),
       ...t.color.oklch,
       alpha: t.color.alpha,
     }));

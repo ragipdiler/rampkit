@@ -131,7 +131,7 @@ async function completeBuilderFlow(page: Page, sourceUrl: string) {
     .click();
   await page.getByRole("tab", { name: "Primitives 24", exact: true }).click();
   await expect(page.locator(".primitive-item")).toHaveCount(24);
-  await page.getByRole("tab", { name: "Semantic 24", exact: true }).click();
+  await page.getByRole("tab", { name: "Semantic 28", exact: true }).click();
   await expect(page.getByLabel("Map text-primary")).toHaveAttribute(
     "data-value",
     "",

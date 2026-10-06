@@ -45,6 +45,8 @@ import { PalettesView } from "./palettes-view";
 import { ColorCanvas } from "./color-canvas";
 import { TokensView } from "./tokens-view";
 import { ContrastView } from "./contrast-view";
+import { websiteUrl } from "../lib/website-url";
+import { PaletteCollectionDialog } from "./palette-collection-dialog";
 import { BuilderDialog, type BuilderDialogSpec } from "./builder-dialog";
 import { SourceInspector, StopInspector } from "./builder-inspector";
 import { ExportPanel } from "./export-panel";
@@ -78,7 +80,7 @@ export function Workbench() {
       delete document.documentElement.dataset.uiTheme;
     };
   }, [art]);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("https://");
   const [analysis, setAnalysis] = useState<SourceAnalysis | null>(null);
   const [manual, setManual] = useState<SourceColor[]>([]);
   const [palettes, setPalettes] = useState<Palette[]>([]);
@@ -89,6 +91,9 @@ export function Workbench() {
   const [actionsTarget, setActionsTarget] = useState<HTMLDivElement | null>(
     null,
   );
+  const [collection, setCollection] = useState<{
+    sources?: SourceColor[];
+  } | null>(null);
   const [sheet, setSheet] = useState<BuilderDialogSpec | null>(null);
   const [created, setCreated] = useState(false);
   const [mappings, setMappings] = useState<SemanticToken[]>(blankSemantics);
@@ -157,6 +162,8 @@ export function Workbench() {
   }, []);
   const analyze = useCallback(async () => {
     if (loading) return;
+    const targetUrl = websiteUrl(url);
+    setUrl(targetUrl);
     setLoading(true);
     setStage("Loading page…");
     setError("");
@@ -167,7 +174,7 @@ export function Workbench() {
       const response = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url: targetUrl }),
         signal: controller.signal,
       });
       if (!response.ok) {
@@ -560,7 +567,13 @@ export function Workbench() {
                     );
                     setInspection({ kind: "source", id });
                   }}
-                  onCreate={() => openCreate()}
+                  onCreate={() => {
+                    const chosen = sources.filter((source) =>
+                      selected.includes(source.id),
+                    );
+                    if (chosen.length > 1) setCollection({ sources: chosen });
+                    else openCreate();
+                  }}
                   onSuggest={(name, ids) => openCreate(ids, name)}
                   onRestore={(id) =>
                     setIgnored((previous) => previous.filter((s) => s !== id))
@@ -571,7 +584,8 @@ export function Workbench() {
                 <PalettesView
                   copy={copy}
                   palettes={palettes}
-                  onCreate={() => openCreate()}
+                  onCreate={() => openCreate([], "")}
+                  onCustom={() => setCollection({})}
                   onInspect={(id, step) =>
                     setInspection({ kind: "stop", id, step })
                   }
@@ -695,7 +709,20 @@ export function Workbench() {
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Paste a website URL"
                 title="Optional: analyze a website to find source colors"
-                type="url"
+                type="text"
+                inputMode="url"
+                autoCapitalize="none"
+                spellCheck={false}
+                onBlur={() =>
+                  setUrl((value) => websiteUrl(value) || "https://")
+                }
+                onPaste={(event) => {
+                  const pasted = event.clipboardData.getData("text").trim();
+                  if (/^https?:\/\//i.test(pasted)) {
+                    event.preventDefault();
+                    setUrl(pasted);
+                  }
+                }}
                 required
                 disabled={loading}
               />
@@ -750,6 +777,23 @@ export function Workbench() {
           />
         )}
       </div>
+      {collection && (
+        <PaletteCollectionDialog
+          sources={collection.sources}
+          existingNames={palettes.map((palette) => palette.name)}
+          onClose={() => setCollection(null)}
+          onSubmit={(created) => {
+            setPalettes((previous) => [...previous, ...created]);
+            setCollection(null);
+            setSelected([]);
+            setInspection(null);
+            setTab("Palettes");
+            notify(
+              `${created.length} palette${created.length === 1 ? "" : "s"} created.`,
+            );
+          }}
+        />
+      )}
       {sheet && (
         <BuilderDialog
           spec={sheet}

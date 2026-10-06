@@ -212,14 +212,16 @@ export function StopInspector({
         <span className="badge">
           {stop.source === "anchor" ? "Anchor" : "Generated"}
         </span>
-        <button className="button-outline" onClick={onLock}>
-          {stop.locked ? (
-            <LockKeyhole size={14} />
-          ) : (
-            <LockKeyholeOpen size={14} />
-          )}{" "}
-          {stop.locked ? "Unlock" : "Lock"}
-        </button>
+        {palette.kind !== "custom" && (
+          <button className="button-outline" onClick={onLock}>
+            {stop.locked ? (
+              <LockKeyhole size={14} />
+            ) : (
+              <LockKeyholeOpen size={14} />
+            )}{" "}
+            {stop.locked ? "Unlock" : "Lock"}
+          </button>
+        )}
       </div>
       <dl>
         <CopyValue label="HEX" value={stop.color.hex} copy={copy} />
@@ -246,8 +248,9 @@ export function StopInspector({
         </label>
         <button className="primary">Apply color</button>
         <p className="muted">
-          Editing makes this stop a locked anchor. Unlock it to allow
-          regeneration.
+          {palette.kind === "custom"
+            ? "Editing replaces only this color. No other colors are generated."
+            : "Editing makes this stop a locked anchor. Unlock it to allow regeneration."}
         </p>
         {error && (
           <p className="error" role="alert">

@@ -8,6 +8,8 @@ import {
   type PaletteStop,
   type GenerationSettings,
   type ColorToken,
+  type Step,
+  type NormalizedColor,
 } from "./models";
 export const DEFAULT_SETTINGS: GenerationSettings = {
   mode: "auto",
@@ -36,7 +38,7 @@ function generateStops(
   if (new Set(constraints.map((a) => a.step)).size !== constraints.length)
     throw new Error("Each anchor must use a different scale position.");
   const nodes = constraints
-    .map((a) => ({ index: STEPS.indexOf(a.step), color: a.color }))
+    .map((a) => ({ index: STEPS.indexOf(a.step as Step), color: a.color }))
     .sort((a, b) => a.index - b.index);
   if (nodes.some((n) => n.index < 0))
     throw new Error("Choose a supported scale position.");
@@ -141,7 +143,33 @@ export function createPalette(
     ...generated,
   };
 }
+/** Custom collections keep their exact colors and order; they are not generated scales. */
+export function createCustomPalette(
+  name: string,
+  colors: NormalizedColor[],
+  id = paletteSlug(name),
+): Palette {
+  paletteSlug(name);
+  if (!colors.length || colors.length > 256)
+    throw new Error("Add between 1 and 256 colors.");
+  return {
+    id,
+    name: name.trim(),
+    kind: "custom",
+    anchors: [],
+    settings: { ...DEFAULT_SETTINGS },
+    warnings: [],
+    stops: colors.map((color, index) => ({
+      step: index + 1,
+      color,
+      source: "anchor",
+      locked: true,
+      anchorOrigin: "manual",
+    })),
+  };
+}
 export function regeneratePalette(palette: Palette): Palette {
+  if (palette.kind === "custom") return palette;
   const constraints = palette.stops.filter((s) => s.locked);
   const generated = generateStops(constraints, palette.settings);
   return {
@@ -161,6 +189,16 @@ export function editPaletteStop(
 ): Palette {
   const color = normalizeColor(value);
   if (!color) throw new Error("Enter a usable HEX, RGB, or OKLCH color.");
+  if (palette.kind === "custom") {
+    if (!palette.stops.some((s) => s.step === step))
+      throw new Error("Choose an existing color.");
+    return {
+      ...palette,
+      stops: palette.stops.map((s) =>
+        s.step === step ? { ...s, color, anchorOrigin: origin } : s,
+      ),
+    };
+  }
   if (!STEPS.includes(step as (typeof STEPS)[number]))
     throw new Error("Choose a supported scale position.");
   const anchor: Anchor = {
@@ -183,6 +221,7 @@ export function editPaletteStop(
   };
 }
 export function toggleStopLock(palette: Palette, step: number): Palette {
+  if (palette.kind === "custom") return palette;
   return {
     ...palette,
     anchors: palette.anchors.map((a) =>

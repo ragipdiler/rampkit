@@ -17,7 +17,7 @@ const primitives = generatePrimitives(
 describe("semantic mappings and suggestions", () => {
   it("shares primitives but maps separate theme hierarchy", () => {
     const semantics = generateSemantics(primitives);
-    expect(semantics).toHaveLength(48);
+    expect(semantics).toHaveLength(56);
     expect(
       semantics.find(
         (t) => t.theme === "light" && t.name === "background-primary",
@@ -63,4 +63,15 @@ describe("semantic mappings and suggestions", () => {
     expect(primitives.some((t) => t.name === suggestion!.token)).toBe(true);
     expect(JSON.stringify(primitives)).toBe(copy);
   });
+});
+
+it("checks secondary action foreground in every state without changing mappings", () => {
+  const semantics = generateSemantics(primitives);
+  const snapshot = JSON.stringify(semantics);
+  const checks = validateSemantics(semantics, primitives).filter(
+    (check) => check.foreground === "action-secondary-foreground",
+  );
+  expect(checks).toHaveLength(6);
+  expect(checks.every((check) => check.ratio > 0)).toBe(true);
+  expect(JSON.stringify(semantics)).toBe(snapshot);
 });

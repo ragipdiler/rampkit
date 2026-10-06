@@ -3,6 +3,7 @@ import { normalizeColor } from "./color";
 import { curateSourceColors, manualSource } from "./sources";
 import {
   createPalette,
+  createCustomPalette,
   editPaletteStop,
   toggleStopLock,
   regeneratePalette,
@@ -104,5 +105,33 @@ describe("user-controlled palette generation", () => {
       500,
     );
     expect(() => regeneratePalette(p)).toThrow("Keep at least one");
+  });
+});
+
+describe("exact custom palettes", () => {
+  it("keeps two colors, alpha and order through edit, regeneration and token conversion", () => {
+    const colors = [normalizeColor("#ff000080")!, normalizeColor("#0000ff")!];
+    const palette = createCustomPalette("Duo", colors);
+    expect(palette.stops.map((stop) => stop.color)).toEqual(colors);
+    expect(palette.anchors).toEqual([]);
+    expect(regeneratePalette(palette)).toBe(palette);
+    expect(toggleStopLock(palette, 1)).toBe(palette);
+    const edited = editPaletteStop(palette, 2, "#00ff00");
+    expect(edited.stops).toHaveLength(2);
+    expect(edited.stops[0].color).toBe(colors[0]);
+    expect(edited.stops[1].color.hex).toBe("#00ff00");
+    expect(palettesToPrimitives([edited]).map((token) => token.name)).toEqual([
+      "duo-1",
+      "duo-2",
+    ]);
+    expect(palettesToPrimitives([edited])[0].color.alpha).toBe(colors[0].alpha);
+  });
+  it("supports more than twelve colors and rejects empty or oversized collections", () => {
+    const color = normalizeColor("#fafafa")!;
+    expect(
+      createCustomPalette("Long", Array(30).fill(color)).stops,
+    ).toHaveLength(30);
+    expect(() => createCustomPalette("Empty", [])).toThrow();
+    expect(() => createCustomPalette("Huge", Array(257).fill(color))).toThrow();
   });
 });
