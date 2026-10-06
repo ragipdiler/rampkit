@@ -1656,3 +1656,24 @@ h3 {
 .install-snippet > button { margin-bottom: 8px; }
 .install-snippet pre { margin: 0; overflow-x: auto; font-size: 11px; line-height: 1.8; }
 @media (max-width: 640px) { .install-troubleshooting-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Read-only terminal windows keep the site's light surfaces and real commands. */
+.installation .install-box.terminal-window { padding: 0; overflow: hidden; background: var(--neutral-25); border-radius: 20px; }
+.terminal-titlebar { display: grid; grid-template-columns: 54px minmax(0, 1fr) 54px; align-items: center; gap: 8px; min-height: 42px; padding: 0 20px; background: var(--neutral-50); }
+.terminal-window-dots { display: flex; align-items: center; gap: 6px; }
+.terminal-window-dots > span { width: 8px; height: 8px; border-radius: 50%; background: var(--red-400); }
+.terminal-window-dots > span:nth-child(2) { background: var(--orange-400); }
+.terminal-window-dots > span:nth-child(3) { background: var(--green-400); }
+.terminal-window-title { color: var(--neutral-600); font-size: 11px; font-weight: 450; text-align: center; white-space: nowrap; }
+.terminal-shell { text-align: right; color: var(--neutral-500); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 10px; }
+.terminal-body { display: flex; flex-direction: column; flex: 1; padding: 20px 24px 24px; min-width: 0; }
+.terminal-body .install-box-top { align-items: flex-start; }
+.terminal-body .install-box-top > span { font-size: 12px; font-weight: 450; color: var(--neutral-950); }
+.terminal-body .install-help { margin-top: 12px; }
+.installation .terminal-commands { margin: 20px 0 0; font-size: 12px; line-height: 1.9; white-space: normal; }
+.terminal-line { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 8px; }
+.terminal-line + .terminal-line { margin-top: 6px; }
+.terminal-line code { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.terminal-prompt { color: var(--lagoon-ink); user-select: none; font-size: 11px; }
+.terminal-cursor { display: inline-block; width: 7px; height: 13px; margin-left: 6px; border-radius: 1px; background: var(--lagoon-ink); opacity: .65; vertical-align: -2px; user-select: none; }
+@media (max-width: 640px) { .terminal-body { padding: 16px 18px 20px; } .terminal-titlebar { padding-inline: 16px; } .terminal-body .install-box-top { flex-wrap: wrap; gap: 6px 12px; } }
