@@ -8,3 +8,7 @@ Rampkit source and original artwork are MIT-licensed. Third-party packages and a
 - **GitHub Invertocat:** official GitHub brand asset; use is subject to GitHub's brand/trademark guidelines, not Rampkit's MIT license. [Brand guidelines](https://brand.github.com/foundations/logo).
 
 Other dependencies include Next.js, React, Tailwind CSS, Radix UI, Culori, Playwright, and Zod. Consult their installed packages for license texts.
+
+## Parkinsans
+
+The website heading font is Parkinsans Medium, Copyright 2024 The Parkinsans Project Authors. It is distributed under the SIL Open Font License 1.1. The original license is included at `apps/site/app/fonts/OFL.txt`.

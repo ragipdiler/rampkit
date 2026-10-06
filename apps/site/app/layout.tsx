@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "@fontsource-variable/google-sans-flex/wght.css";
 import "../../web/app/classic-palette.css";
 import "./site.css";
+
+const headingFont = localFont({
+  src: "./fonts/Parkinsans-Medium.ttf",
+  weight: "500",
+  style: "normal",
+  display: "swap",
+  variable: "--heading-font",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rampkit-studio.vercel.app"),
@@ -36,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={headingFont.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
