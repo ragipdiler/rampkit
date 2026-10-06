@@ -31,12 +31,12 @@ Rampkit runs on your machine. **No account required. No database required. No pa
 
 ## Installation
 
-Use **Node.js 22.13 or newer** (Node 22 or 24 LTS recommended) and npm.
+Install **Node.js 22.13 or newer** (Node 22 or 24 LTS recommended; npm is included) and **Git** first. Restart your terminal after installing them. Open a terminal in the folder where you want to download Rampkit and run these lines in order. Stop if a command fails.
 
 ```bash
 git clone https://github.com/ragipdiler/rampkit.git
 cd rampkit
-npm install
+npm ci
 npx playwright install chromium
 ```
 
@@ -50,16 +50,29 @@ No `.env` file or service credentials are needed.
 
 ## Local development
 
+Continue in the same terminal after installation. For later sessions, open a terminal in the downloaded `rampkit` repository (the folder containing `package.json`) first.
+
 ```bash
 npm run dev
 ```
 
-Open [127.0.0.1:3000](http://127.0.0.1:3000). Development and production scripts bind to loopback by default. To choose another port, use `npm run dev -- --port 3001`.
+Open the **Local** URL printed by the terminal; the default is [127.0.0.1:3000](http://127.0.0.1:3000). Keep the terminal running. If port 3000 is busy, use the actual port shown in the terminal. Development and production scripts bind to loopback by default. To choose another port, use `npm run dev -- --port 3001`.
 
 ```bash
 npm run build
 npm start
 ```
+
+To update an existing installation, export any unsaved work, stop the server with Ctrl+C, and run these commands from the repository folder:
+
+```bash
+git pull --ff-only
+npm ci
+npx playwright install chromium
+npm run dev
+```
+
+Do not clone again into an existing `rampkit` folder. If npm reports a missing `package.json`, your terminal is in the wrong directory. If Node.js, npm or Git is not found, install the prerequisites and restart the terminal.
 
 Validation:
 

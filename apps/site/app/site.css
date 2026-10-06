@@ -1642,3 +1642,17 @@ h3 {
     color: var(--neutral-600);
   }
 }
+
+.install-help { color: var(--neutral-600); font-size: 12px; line-height: 1.7; margin: 16px 0 0; }
+.installation .install-box-bottom { align-items: flex-start; line-height: 1.7; }
+.installation .ready-dot { flex-shrink: 0; margin-top: 7px; }
+.installation .install-box-bottom a { color: var(--neutral-950); overflow-wrap: anywhere; }
+.install-troubleshooting { grid-column: 1 / -1; padding: 18px 24px; background: var(--neutral-25); border-radius: 20px; font-size: 13px; }
+.install-troubleshooting summary { cursor: pointer; font-weight: 450; }
+.install-troubleshooting-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-top: 20px; }
+.install-troubleshooting h3 { font-size: 14px; margin-bottom: 8px; }
+.install-troubleshooting p { color: var(--neutral-600); font-size: 12px; line-height: 1.8; }
+.install-snippet { min-width: 0; margin-top: 12px; }
+.install-snippet > button { margin-bottom: 8px; }
+.install-snippet pre { margin: 0; overflow-x: auto; font-size: 11px; line-height: 1.8; }
+@media (max-width: 640px) { .install-troubleshooting-grid { grid-template-columns: minmax(0, 1fr); } }

@@ -18,7 +18,7 @@ test("installation copies exact commands without changing its label or size", as
   await expect
     .poll(() => page.evaluate(() => navigator.clipboard.readText()))
     .toBe(
-      "git clone https://github.com/ragipdiler/rampkit.git\ncd rampkit\nnpm install\nnpx playwright install chromium",
+      "git clone https://github.com/ragipdiler/rampkit.git\ncd rampkit\nnpm ci\nnpx playwright install chromium",
     );
   await expect(button).toHaveText("Copy commands");
   const after = await button.boundingBox();
@@ -242,4 +242,35 @@ test("desktop heading palette previews accurate Lagoon technical values before a
   ).toHaveAttribute("aria-pressed", "true");
   await popup.getByRole("button", { name: "Lagoon", exact: true }).click();
   await expect(popup).toBeHidden();
+});
+
+test("setup explains working directory, actual local URL and safe repeat installation", async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/#installation");
+  const section = page.locator("#installation");
+  await expect(section).toContainText("same terminal");
+  await expect(section).toContainText("Local URL printed in your terminal");
+  await expect(
+    section.getByRole("link", { name: "http://127.0.0.1:3000", exact: true }),
+  ).toHaveAttribute("href", "http://127.0.0.1:3000");
+  await section
+    .getByText("Already installed, or having trouble?", { exact: true })
+    .click();
+  await section
+    .getByRole("button", { name: "Copy update commands", exact: true })
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => navigator.clipboard.readText()))
+    .toBe(
+      "git pull --ff-only\nnpm ci\nnpx playwright install chromium\nnpm run dev",
+    );
+  await section
+    .getByRole("button", { name: "Copy alternate port command", exact: true })
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => navigator.clipboard.readText()))
+    .toBe("npm run dev -- --port 3001");
 });

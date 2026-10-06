@@ -303,8 +303,8 @@ export default function Page() {
             </span>
             <h2>Run Rampkit on your machine.</h2>
             <p>
-              Copy the commands into your terminal. Install once, then open the
-              local app whenever you need it.
+              Install Node.js and Git first. Download Rampkit once, then start
+              it from its folder. No account or API key is needed.
             </p>
           </div>
           <InstallCommand />
@@ -320,13 +320,23 @@ export default function Page() {
                   Node.js 22.13 or newer <ArrowUpRight size={13} />
                 </a>
                 <br />
-                npm · Git · macOS, Windows, or Linux
+                npm (included with Node.js) ·{" "}
+                <a
+                  href="https://git-scm.com/downloads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Git <ArrowUpRight size={13} />
+                </a>
+                <br />
+                macOS, Windows, or Linux
               </p>
             </div>
             <p className="small-note">
               On Linux, use{" "}
               <code>npx playwright install --with-deps chromium</code> if
-              Chromium needs system libraries.
+              Chromium needs system libraries. Complete this before analyzing
+              websites. Manual color work does not require Chromium.
             </p>
             <a
               className="text-link"
