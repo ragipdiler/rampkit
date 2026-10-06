@@ -132,3 +132,69 @@ for (const width of [390, 1440]) {
       .toBe(width < 800 ? 80 : 96);
   });
 }
+
+test("selecting the colored heading opens four choices and applies a color without moving the heading", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const phrase = page.getByRole("button", {
+    name: "color system. Choose text color",
+  });
+  const original = await phrase.boundingBox();
+  const previousColor = await phrase.evaluate(
+    (el) => getComputedStyle(el).color,
+  );
+  await phrase.evaluate((el) => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  });
+  const popup = page.getByRole("dialog", { name: "Heading color" });
+  await expect(popup).toBeVisible();
+  await expect(popup.locator("button[aria-pressed]")).toHaveCount(4);
+  await popup.getByRole("button", { name: "Green", exact: true }).click();
+  await expect(popup).toBeHidden();
+  await expect
+    .poll(() => phrase.evaluate((el) => getComputedStyle(el).color))
+    .not.toBe(previousColor);
+  expect(await phrase.boundingBox()).toEqual(original);
+  await phrase.press("Enter");
+  await expect(
+    popup.getByRole("button", { name: "Green", exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(phrase).toBeFocused();
+});
+
+test("heading color choices fit mobile screens and unrelated text selection does not open them", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto("/");
+  await page.locator(".hero-description").evaluate((el) => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  });
+  await expect(
+    page.getByRole("dialog", { name: "Heading color" }),
+  ).toBeHidden();
+  const phrase = page.getByRole("button", {
+    name: "color system. Choose text color",
+  });
+  await phrase.click();
+  const popup = page.getByRole("dialog", { name: "Heading color" });
+  await expect(popup).toBeVisible();
+  const bounds = await popup.boundingBox();
+  expect(bounds!.x).toBeGreaterThanOrEqual(0);
+  expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(320);
+  await page
+    .getByRole("heading", { name: "A palette is only the beginning." })
+    .click();
+  await expect(popup).toBeHidden();
+});

@@ -20,6 +20,7 @@ import {
   TokenArt,
   PaintArt,
 } from "../components/illustrations";
+import { HeadingColor } from "../components/heading-color";
 import { StickyHeader } from "../components/sticky-header";
 import { GitHubStars } from "../components/github-stars";
 import { InstallCommand } from "../components/install-command";
@@ -94,7 +95,7 @@ export default function Page() {
             </span>
             <h1>
               Turn a color into
-              <br />a usable <span>color system.</span>
+              <br />a usable <HeadingColor />
             </h1>
             <p className="hero-description">
               Extract colors from a website or start with your own. Build OKLCH

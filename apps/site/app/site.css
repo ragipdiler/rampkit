@@ -163,8 +163,8 @@ h1 {
   letter-spacing: -0.02em;
   margin: 24px 0;
 }
-h1 span {
-  color: var(--purple-600);
+h1 .heading-color-text {
+  color: var(--heading-choice);
 }
 .hero-description {
   max-width: 455px;
@@ -1218,4 +1218,67 @@ h3 {
   .site-header-frame[data-compact="false"] .site-header {
     width: calc(100% - 48px);
   }
+}
+
+.heading-color-text {
+  color: var(--heading-choice);
+  cursor: text;
+  transition: color 180ms ease;
+}
+.heading-color-text::selection {
+  color: var(--heading-choice);
+  background: color-mix(in oklch, var(--heading-choice) 18%, white);
+}
+.heading-color-popup {
+  position: fixed;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 9999px;
+  background: var(--neutral-50);
+  box-shadow: 0 4px 20px rgb(25 25 35 / 10%);
+  animation: color-popup-in 160ms ease;
+}
+.heading-color-swatch {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: transform 160ms ease;
+}
+.heading-color-swatch:hover {
+  transform: scale(1.08);
+}
+.heading-color-close {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  color: var(--neutral-600);
+  background: transparent;
+  cursor: pointer;
+}
+@keyframes color-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading-color-popup button:focus-visible {
+  outline-offset: 2px;
 }
