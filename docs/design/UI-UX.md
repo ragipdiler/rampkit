@@ -6,7 +6,11 @@ Rampkit is a compact desktop color utility. Preserve the completed workflows and
 
 A single top navigation row contains the logo, workspace pages, Art toggle, and public author profile. Page title, primary tabs, Token theme where applicable, and actions share the secondary row. Headings have no description underneath. Avoid blank action-only rows and excess spacing.
 
+The shared workspace frame has a 24px panel radius and 8px outer insets on the left, right, and bottom. Classic uses neutral-50 around its white panel. Keep the inspector inside this frame and retain the separate Art appearance.
+
 Text sections stay within 560px. Cards have inner padding and rounded corners. Resting content cards have no shadows; overlays may use elevation. Layout chrome has no dividers. Outline actions use transparent backgrounds and 0.5px borders. Never underline interactive text.
+
+Palette containers and token editor/group/specimen containers have transparent backgrounds and 0.25px outlines, using the content radius. Palette containers use 16px padding; token containers use 12px. These outlines are exceptions to the borderless chrome reset. Actual mapped preview components retain their token backgrounds.
 
 ## Controls and hierarchy
 

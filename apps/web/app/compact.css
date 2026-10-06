@@ -148,18 +148,33 @@ body .command-search input {
   box-shadow: none;
 }
 .source-swatch,
-.palette-block,
-.semantic-group,
 .canvas-node {
   background: var(--card-surface);
 }
-/* Filled content groups need an inset and a rounded container in both themes. */
+/* Palette containers stay transparent so the surrounding fill does not tint the study. */
 .palette-block {
+  background: transparent;
+  border: 0.25px solid var(--line);
   padding: 16px;
   border-radius: var(--radius-content);
   margin-bottom: 16px;
 }
 .semantic-group {
+  padding: 12px;
+}
+/* Color-study cards are an explicit exception to borderless layout chrome.
+   Preview components inside these containers retain their mapped token colors. */
+:root body :is(.palette-block, .semantic-group, .preview-token-group, .semantic-example, .integration-code) {
+  background: transparent;
+  border: 0.25px solid var(--control-line);
+  border-width: 0.25px !important;
+  border-radius: var(--radius-content);
+  box-shadow: none;
+}
+:root body .palette-block {
+  padding: 16px;
+}
+:root body :is(.semantic-group, .preview-token-group, .semantic-example, .integration-code) {
   padding: 12px;
 }
 :root body .source-caption {
@@ -580,6 +595,19 @@ body .command-search input {
 }
 
 /* Full-width workbench: primary navigation lives with the brand. */
+.builder-layout {
+  padding: 0 8px 8px;
+}
+.workspace-column {
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+:root:not([data-ui-theme="art"]) .builder-layout {
+  background: var(--neutral-50);
+}
+:root:not([data-ui-theme="art"]) .workspace-column {
+  background: var(--panel);
+}
 :root body .toolbar {
   display: flex;
   align-items: center;

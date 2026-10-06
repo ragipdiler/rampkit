@@ -164,11 +164,11 @@ html[data-ui-theme="art"] .empty-illustration::before {
   pointer-events: none;
 }
 html[data-ui-theme="art"] .palette-block {
-  border: 1px solid var(--line);
+  border: 0.25px solid var(--line);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
-  background: var(--card-surface);
+  background: transparent;
 }
 html[data-ui-theme="art"] .palette-block header h2 {
   font: 400 18px/24px var(--app-font);
@@ -178,7 +178,7 @@ html[data-ui-theme="art"] .source-caption {
   background: var(--panel);
 }
 html[data-ui-theme="art"] .semantic-group {
-  background: var(--card-surface);
+  background: transparent;
 }
 html[data-ui-theme="art"] .semantic-group-heading h2 {
   color: var(--art-rust);
