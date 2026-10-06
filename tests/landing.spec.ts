@@ -137,20 +137,33 @@ test("selecting the colored heading opens four choices and applies a color witho
   page,
 }) => {
   await page.goto("/");
-  const phrase = page.getByRole("button", {
-    name: "color system. Choose text color",
-  });
+  const phrase = page.locator(".heading-color-text");
   const original = await phrase.boundingBox();
   const previousColor = await phrase.evaluate(
     (el) => getComputedStyle(el).color,
   );
-  await phrase.evaluate((el) => {
+  const firstLine = await phrase.evaluate((el) => {
     const range = document.createRange();
     range.selectNodeContents(el);
-    const selection = window.getSelection();
-    selection?.removeAllRanges();
-    selection?.addRange(range);
+    const rect = range.getClientRects()[0];
+    return {
+      x: rect.left,
+      y: rect.top,
+      width: rect.width,
+      height: rect.height,
+    };
   });
+  await page.mouse.move(firstLine.x + 5, firstLine.y + firstLine.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(
+    firstLine.x + firstLine.width - 5,
+    firstLine.y + firstLine.height / 2,
+    { steps: 16 },
+  );
+  await page.mouse.up();
+  expect(
+    await page.evaluate(() => window.getSelection()?.toString()),
+  ).toContain("color");
   const popup = page.getByRole("dialog", { name: "Heading color" });
   await expect(popup).toBeVisible();
   await expect(popup.locator("button[aria-pressed]")).toHaveCount(4);
@@ -160,13 +173,17 @@ test("selecting the colored heading opens four choices and applies a color witho
     .poll(() => phrase.evaluate((el) => getComputedStyle(el).color))
     .not.toBe(previousColor);
   expect(await phrase.boundingBox()).toEqual(original);
-  await phrase.press("Enter");
+  const trigger = page.getByRole("button", {
+    name: "Choose heading text color",
+  });
+  await trigger.focus();
+  await trigger.press("Enter");
   await expect(
     popup.getByRole("button", { name: "Green", exact: true }),
   ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(popup).toBeHidden();
-  await expect(phrase).toBeFocused();
+  await expect(trigger).toBeFocused();
 });
 
 test("heading color choices fit mobile screens and unrelated text selection does not open them", async ({
@@ -184,10 +201,14 @@ test("heading color choices fit mobile screens and unrelated text selection does
   await expect(
     page.getByRole("dialog", { name: "Heading color" }),
   ).toBeHidden();
-  const phrase = page.getByRole("button", {
-    name: "color system. Choose text color",
+  const phrase = page.locator(".heading-color-text");
+  await phrase.evaluate((el) => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
   });
-  await phrase.click();
   const popup = page.getByRole("dialog", { name: "Heading color" });
   await expect(popup).toBeVisible();
   const bounds = await popup.boundingBox();

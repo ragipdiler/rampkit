@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { Check, X } from "lucide-react";
+import { Check, Palette, X } from "lucide-react";
 
 const choices = [
   { name: "Purple", value: "var(--purple-600)" },
@@ -12,6 +12,7 @@ const choices = [
 
 export function HeadingColor() {
   const text = useRef<HTMLSpanElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
   const popup = useRef<HTMLDivElement>(null);
   const mode = useRef<"selection" | "manual">("selection");
   const [selected, setSelected] = useState(0);
@@ -35,8 +36,10 @@ export function HeadingColor() {
 
   useEffect(() => {
     let pending = 0;
+    let selecting = false;
     const updateSelection = () => {
       pending = 0;
+      if (selecting) return;
       const selection = window.getSelection();
       if (
         selection &&
@@ -55,20 +58,29 @@ export function HeadingColor() {
     };
     const dismiss = () => setPosition(null);
     const onPointer = (event: PointerEvent) => {
+      selecting = !!text.current?.contains(event.target as Node);
       if (
         !text.current?.contains(event.target as Node) &&
         !popup.current?.contains(event.target as Node)
       )
         dismiss();
     };
+    const onPointerEnd = () => {
+      if (selecting) {
+        selecting = false;
+        onSelection();
+      }
+    };
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && popup.current) {
         dismiss();
-        text.current?.focus({ preventScroll: true });
+        trigger.current?.focus({ preventScroll: true });
       }
     };
     document.addEventListener("selectionchange", onSelection);
     document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("pointerup", onPointerEnd);
+    document.addEventListener("pointercancel", onPointerEnd);
     document.addEventListener("keydown", onKey);
     window.addEventListener("scroll", dismiss, { passive: true });
     window.addEventListener("resize", dismiss);
@@ -76,6 +88,8 @@ export function HeadingColor() {
       cancelAnimationFrame(pending);
       document.removeEventListener("selectionchange", onSelection);
       document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("pointerup", onPointerEnd);
+      document.removeEventListener("pointercancel", onPointerEnd);
       document.removeEventListener("keydown", onKey);
       window.removeEventListener("scroll", dismiss);
       window.removeEventListener("resize", dismiss);
@@ -91,29 +105,28 @@ export function HeadingColor() {
       <span
         ref={text}
         className="heading-color-text"
-        role="button"
-        tabIndex={0}
-        aria-label="color system. Choose text color"
-        aria-haspopup="dialog"
-        aria-expanded={position !== null}
         style={{ "--heading-choice": choices[selected].value } as CSSProperties}
-        onClick={() => {
-          if (window.getSelection()?.isCollapsed) openManually();
-        }}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openManually();
-            requestAnimationFrame(() =>
-              popup.current
-                ?.querySelector<HTMLButtonElement>("button[aria-pressed=true]")
-                ?.focus(),
-            );
-          }
-        }}
       >
         color system.
       </span>
+      <button
+        ref={trigger}
+        className="heading-color-trigger"
+        type="button"
+        aria-label="Choose heading text color"
+        aria-haspopup="dialog"
+        aria-expanded={position !== null}
+        onClick={() => {
+          openManually();
+          requestAnimationFrame(() =>
+            popup.current
+              ?.querySelector<HTMLButtonElement>("button[aria-pressed=true]")
+              ?.focus(),
+          );
+        }}
+      >
+        <Palette size={18} aria-hidden="true" />
+      </button>
       {position &&
         createPortal(
           <div
@@ -139,7 +152,7 @@ export function HeadingColor() {
                   if (selection && text.current?.contains(selection.anchorNode))
                     selection.removeAllRanges();
                   if (event.detail === 0)
-                    text.current?.focus({ preventScroll: true });
+                    trigger.current?.focus({ preventScroll: true });
                 }}
               >
                 <Check
@@ -156,7 +169,7 @@ export function HeadingColor() {
               onClick={(event) => {
                 setPosition(null);
                 if (event.detail === 0)
-                  text.current?.focus({ preventScroll: true });
+                  trigger.current?.focus({ preventScroll: true });
               }}
             >
               <X size={15} />

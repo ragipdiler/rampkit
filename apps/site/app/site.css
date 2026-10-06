@@ -1223,6 +1223,8 @@ h3 {
 .heading-color-text {
   color: var(--heading-choice);
   cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
   transition: color 180ms ease;
 }
 .heading-color-text::selection {
@@ -1281,4 +1283,28 @@ h3 {
 
 .heading-color-popup button:focus-visible {
   outline-offset: 2px;
+}
+
+.heading-color-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  background: transparent;
+  color: var(--purple-600);
+}
+.heading-color-trigger:focus-visible {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  clip-path: none;
+  overflow: visible;
+  border-radius: 999px;
+  background: var(--neutral-50);
 }
