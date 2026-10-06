@@ -78,3 +78,57 @@ for (const width of [320, 390, 768, 1440]) {
     expect((await page.request.get("/social.png")).status()).toBe(200);
   });
 }
+
+for (const width of [390, 1440]) {
+  test(`sticky navigation compacts and restores without shifting content at ${width}px`, async ({
+    page,
+  }) => {
+    await page.route(
+      "https://api.github.com/repos/ragipdiler/rampkit",
+      (route) => route.fulfill({ json: { stargazers_count: 42 } }),
+    );
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const frame = page.locator(".site-header-frame");
+    const header = frame.locator("header");
+    const originalTop = await page
+      .locator("#features")
+      .evaluate((el) => (el as HTMLElement).offsetTop);
+    await page.evaluate(() =>
+      window.scrollTo({ top: 1500, behavior: "instant" }),
+    );
+    await expect(frame).toHaveAttribute("data-compact", "true");
+    await expect
+      .poll(async () => (await header.boundingBox())?.height)
+      .toBe(44);
+    const box = await header.boundingBox();
+    expect(box!.y).toBeCloseTo(12);
+    expect(await header.evaluate((el) => getComputedStyle(el).padding)).toBe(
+      "4px",
+    );
+    expect(
+      await page
+        .locator("#features")
+        .evaluate((el) => (el as HTMLElement).offsetTop),
+    ).toBe(originalTop);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    if (width === 1440) {
+      await page
+        .getByRole("navigation", { name: "Main navigation" })
+        .getByRole("link", { name: "How it works" })
+        .click();
+      await expect
+        .poll(async () => (await page.locator("#workflow").boundingBox())!.y)
+        .toBeCloseTo(96, 0);
+    }
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect(frame).toHaveAttribute("data-compact", "false");
+    await expect
+      .poll(async () => (await header.boundingBox())?.height)
+      .toBe(width < 800 ? 80 : 96);
+  });
+}

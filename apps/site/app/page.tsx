@@ -20,6 +20,7 @@ import {
   TokenArt,
   PaintArt,
 } from "../components/illustrations";
+import { StickyHeader } from "../components/sticky-header";
 import { GitHubStars } from "../components/github-stars";
 import { InstallCommand } from "../components/install-command";
 
@@ -64,18 +65,25 @@ export default function Page() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="site-header wrap">
-        <Link className="site-brand" href="/" aria-label="Rampkit home">
-          <Image src="/brand/rampkit-mark.svg" alt="" width={22} height={22} />
-          Rampkit
-        </Link>
-        <nav className="site-nav" aria-label="Main navigation">
-          <a href="#features">Features</a>
-          <a href="#workflow">How it works</a>
-          <a href="#installation">Installation</a>
-        </nav>
-        <GitHubStars />
-      </header>
+      <StickyHeader>
+        <header className="site-header wrap">
+          <Link className="site-brand" href="/" aria-label="Rampkit home">
+            <Image
+              src="/brand/rampkit-mark.svg"
+              alt=""
+              width={22}
+              height={22}
+            />
+            Rampkit
+          </Link>
+          <nav className="site-nav" aria-label="Main navigation">
+            <a href="#features">Features</a>
+            <a href="#workflow">How it works</a>
+            <a href="#installation">Installation</a>
+          </nav>
+          <GitHubStars />
+        </header>
+      </StickyHeader>
 
       <main id="main">
         <section className="hero wrap">

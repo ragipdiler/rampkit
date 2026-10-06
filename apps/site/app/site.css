@@ -9,7 +9,7 @@ html[data-platform-font="google"] {
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 32px;
+  scroll-padding-top: 96px;
 }
 body {
   margin: 0;
@@ -63,7 +63,7 @@ h2,
 h3 {
   font-family: var(--heading-font), var(--app-font);
   font-weight: 500;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   line-height: 1.15;
 }
 .wrap {
@@ -160,7 +160,7 @@ h3 {
 }
 h1 {
   font-size: clamp(44px, 4.35vw, 63px);
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   margin: 24px 0;
 }
 h1 span {
@@ -425,7 +425,7 @@ h1 span {
 }
 .section-heading h2 {
   font-size: 34px;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   margin: 14px 0;
 }
 .section-heading p {
@@ -464,7 +464,7 @@ h1 span {
 }
 h3 {
   font-size: 19px;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
 }
 .feature-copy p {
   margin-top: 13px;
@@ -484,7 +484,7 @@ h3 {
 }
 .paint-copy h2 {
   font-size: 35px;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   margin: 18px 0;
 }
 .paint-copy p {
@@ -576,7 +576,7 @@ h3 {
 }
 .installation h2 {
   font-size: 38px;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   margin: 18px 0;
 }
 .installation-copy > p {
@@ -774,7 +774,7 @@ h3 {
 }
 .closing h2 {
   font-size: 34px;
-  letter-spacing: -0.0025em;
+  letter-spacing: -0.0125em;
   margin: 14px 0;
 }
 .closing p {
@@ -820,7 +820,7 @@ h3 {
   }
   h1 {
     font-size: 52px;
-    letter-spacing: -0.0025em;
+    letter-spacing: -0.0125em;
   }
   .hero-art {
     transform: scale(0.9);
@@ -992,7 +992,7 @@ h3 {
   }
   h1 {
     font-size: 39px;
-    letter-spacing: -0.0025em;
+    letter-spacing: -0.0125em;
     margin-top: 22px;
   }
   .hero-description {
@@ -1037,7 +1037,7 @@ h3 {
   }
   .section-heading h2 {
     font-size: 29px;
-    letter-spacing: -0.0025em;
+    letter-spacing: -0.0125em;
   }
   .section-heading p {
     font-size: 13px;
@@ -1147,4 +1147,75 @@ h3 {
   min-width: 3ch;
   text-align: right;
   font-variant-numeric: tabular-nums;
+}
+
+.site-header-frame {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  height: 96px;
+  pointer-events: none;
+}
+.site-header-frame .site-header {
+  width: 100%;
+  margin-inline: auto;
+  pointer-events: auto;
+  transition:
+    width 320ms ease,
+    height 320ms ease,
+    padding 320ms ease,
+    max-width 320ms ease,
+    transform 320ms ease,
+    border-radius 320ms ease,
+    background-color 320ms ease,
+    box-shadow 320ms ease,
+    gap 320ms ease;
+}
+.site-header-frame[data-compact="true"] .site-header {
+  max-width: 860px;
+  width: calc(100% - 32px);
+  height: 44px;
+  padding: 4px;
+  gap: 16px;
+  transform: translateY(12px);
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgb(25 25 35 / 8%);
+}
+.site-header-frame .site-brand {
+  transition:
+    padding 320ms ease,
+    font-size 320ms ease;
+}
+.site-header-frame[data-compact="true"] .site-brand {
+  padding-inline: 12px;
+  font-size: 16px;
+}
+.site-header-frame .site-nav {
+  transition: gap 320ms ease;
+}
+.site-header-frame[data-compact="true"] .site-nav {
+  gap: 22px;
+}
+.site-header-frame[data-compact="true"] .github-stars {
+  margin-left: 0;
+  height: 36px;
+}
+@media (max-width: 800px) {
+  .site-header-frame {
+    height: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header-frame .site-header,
+  .site-header-frame .site-brand,
+  .site-header-frame .site-nav {
+    transition: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .site-header-frame[data-compact="false"] .site-header {
+    width: calc(100% - 48px);
+  }
 }
