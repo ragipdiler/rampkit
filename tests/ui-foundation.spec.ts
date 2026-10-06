@@ -140,7 +140,7 @@ test("top navigation, compact controls, aligned dropdowns and keyboard access", 
       headerAlignment: Math.abs(
         navigation.y + navigation.height / 2 - logo.y - logo.height / 2,
       ),
-      bottomGap: innerHeight - form.bottom,
+      bottomGap: column.bottom - form.bottom,
       centered: Math.abs(form.x + form.width / 2 - column.x - column.width / 2),
     };
   });
